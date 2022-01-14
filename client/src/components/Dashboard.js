@@ -15,6 +15,8 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
+import Map from "./Map";
+
 import { useState } from "react";
 
 const drawerWidth = 175;
@@ -124,12 +126,12 @@ function Dashboard(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          // width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />
         {/* place contents here */}
+        <Map />
       </Box>
     </Box>
   );

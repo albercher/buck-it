@@ -4,8 +4,11 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState(false)
+
   return (
     <div>
       <BrowserRouter>
