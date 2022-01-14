@@ -15,7 +15,6 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
-
 import { useState } from "react";
 
 const drawerWidth = 175;
@@ -64,9 +63,9 @@ function Dashboard(props) {
       <AppBar
         position="fixed"
         sx={{
-        //   width: { sm: `calc(100% - ${drawerWidth}px)` },
-        //   ml: { sm: `${drawerWidth}px` },
-        zIndex: (theme) => theme.zIndex.drawer + 1
+          //   width: { sm: `calc(100% - ${drawerWidth}px)` },
+          //   ml: { sm: `${drawerWidth}px` },
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar>
@@ -89,14 +88,13 @@ function Dashboard(props) {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -131,7 +129,7 @@ function Dashboard(props) {
         }}
       >
         <Toolbar />
-{/* place contents here */}
+        {/* place contents here */}
       </Box>
     </Box>
   );
