@@ -25,10 +25,10 @@ import { useState } from "react";
 const drawerWidth = 175;
 
 const navList = [
-  {name: "Home", icon: <HomeOutlinedIcon />, link: "/"},
-  {name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/"},
-  {name: "Map", icon: <MapOutlinedIcon />, link: "/"},
-]
+  { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
+  { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
+  { name: "Map", icon: <MapOutlinedIcon />, link: "/" },
+];
 
 function Dashboard(props) {
   const { window } = props;
@@ -43,7 +43,14 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
-    {navList.map(item => <SidebarItem key={item.name} text={item.name} icon={item.icon} to={item.link} />)}
+        {navList.map((item) => (
+          <SidebarItem
+            key={item.name}
+            text={item.name}
+            icon={item.icon}
+            to={item.link}
+          />
+        ))}
       </List>
     </div>
   );
