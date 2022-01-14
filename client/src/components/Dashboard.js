@@ -11,6 +11,9 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+
+import SidebarItem from "./SidebarItem";
+
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -20,6 +23,12 @@ import Map from "./Map";
 import { useState } from "react";
 
 const drawerWidth = 175;
+
+const navList = [
+  {name: "Home", icon: <HomeOutlinedIcon />, link: "/"},
+  {name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/"},
+  {name: "Map", icon: <MapOutlinedIcon />, link: "/"},
+]
 
 function Dashboard(props) {
   const { window } = props;
@@ -34,24 +43,7 @@ function Dashboard(props) {
       <Toolbar />
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <HomeOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <FavoriteBorderOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Favorites" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MapOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Map" />
-        </ListItem>
+    {navList.map(item => <SidebarItem key={item.name} text={item.name} icon={item.icon} to={item.link} />)}
       </List>
     </div>
   );
