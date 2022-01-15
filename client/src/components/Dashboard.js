@@ -24,6 +24,7 @@ import { useState } from "react";
 
 const drawerWidth = 175;
 
+// Navigation Object
 const navList = [
   { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
@@ -39,6 +40,7 @@ function Dashboard(props) {
   };
 
   const drawer = (
+    // Navigation
     <div>
       <Toolbar />
       <Divider />
@@ -64,8 +66,8 @@ function Dashboard(props) {
       <AppBar
         position="fixed"
         sx={{
-          //   width: { sm: `calc(100% - ${drawerWidth}px)` },
-          //   ml: { sm: `${drawerWidth}px` },
+          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          // ml: { sm: `${drawerWidth}px` },
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
@@ -80,7 +82,7 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Buck-It
           </Typography>
         </Toolbar>
       </AppBar>
@@ -125,7 +127,7 @@ function Dashboard(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />

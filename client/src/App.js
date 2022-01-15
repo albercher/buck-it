@@ -4,6 +4,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 
+// Mapbox css
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 function App() {
@@ -13,10 +14,6 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* <Route
-                path="/"
-                element={isLoggedIn ? <Dashboard /> : <SignIn />}
-              /> */}
           <Route path="/" element={<Dashboard />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
