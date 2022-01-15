@@ -1,9 +1,9 @@
 import { useState } from "react";
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL from "react-map-gl";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-
+const MAPBOX_TOKEN = "";
 
 // solution for map fitting screen and being responsive
 const StyledMap = styled(ReactMapGL)`
@@ -12,23 +12,21 @@ const StyledMap = styled(ReactMapGL)`
 
 function Map() {
   const [viewport, setViewport] = useState({
-    longitude: -122.45,
-    latitude: 37.78,
-    zoom: 14
+    longitude: 10,
+    latitude: 90,
+    zoom: 1,
   });
-  console.log(viewport)
+  console.log(viewport);
   return (
-    // <ReactMapGL mapboxApiAccessToken={MAPBOX_TOKEN} {...viewport} width="100vw" height="100vh" onViewportChange={setViewport} />
     <StyledMap
-    {...viewport}
-    mapStyle="mapbox://styles/mapbox/streets-v11"
-    width="100%"
-    height="100vh"
-    onViewportChange={(viewport) => setViewport(viewport)}
-    mapboxApiAccessToken={MAPBOX_TOKEN}
-  >
-  </StyledMap>
-    );
+      {...viewport}
+      mapStyle="mapbox://styles/mapbox/streets-v11"
+      width="100%"
+      height="100vh"
+      onViewportChange={(viewport) => setViewport(viewport)}
+      mapboxApiAccessToken={MAPBOX_TOKEN}
+    ></StyledMap>
+  );
 }
 
 export default Map;

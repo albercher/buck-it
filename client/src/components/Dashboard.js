@@ -130,7 +130,7 @@ function Dashboard(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar />
+        {/* <Toolbar /> */}
         {/* place contents here */}
         <Map />
       </Box>
