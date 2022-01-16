@@ -4,8 +4,12 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 
+//Mapbox Geocoder CSS
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
 // Mapbox css
 import 'mapbox-gl/dist/mapbox-gl.css';
+// ? might be able to get rid of styled components
 
 function App() {
   // const [isLoggedIn, setLoggedIn] = useState(false)

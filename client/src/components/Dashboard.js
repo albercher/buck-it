@@ -5,9 +5,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -20,11 +17,11 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import Map from "./Map";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const drawerWidth = 175;
 
-// Navigation Object
+// Navigation Array
 const navList = [
   { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
@@ -38,6 +35,10 @@ function Dashboard(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  
+   // Used to access child imperatively
+  // from docs: Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
+  const geocoderContainerRef = useRef();
 
   const drawer = (
     // Navigation
@@ -84,6 +85,7 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div">
             Buck-It
           </Typography>
+          <div ref={geocoderContainerRef} />
         </Toolbar>
       </AppBar>
       <Box
@@ -132,7 +134,7 @@ function Dashboard(props) {
       >
         {/* <Toolbar /> */}
         {/* place contents here */}
-        <Map />
+        <Map geocoderContainerRef={geocoderContainerRef} />
       </Box>
     </Box>
   );
