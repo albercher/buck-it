@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
@@ -12,7 +12,23 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // ? might be able to get rid of styled components
 
 function App() {
-  // const [isLoggedIn, setLoggedIn] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          setIsAuthenticated(true);
+        });
+      }
+    });
+  }, []);
+
+  // if (!isAuthenticated) {
+  //   return <div></div>;
+  // }
 
   return (
     <div>
