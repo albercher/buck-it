@@ -11,18 +11,47 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 
+import { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
   };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const userCreds = { ...formData };
+
+    fetch("/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userCreds),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+        });
+      } else {
+        res.json().then((errors) => {
+          console.error(errors);
+        });
+      }
+    });
+  }
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -33,7 +62,8 @@ function SignUp() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
           backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
             t.palette.mode === "light"
@@ -75,6 +105,7 @@ function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -85,6 +116,7 @@ function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,6 +127,7 @@ function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,6 +139,7 @@ function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
