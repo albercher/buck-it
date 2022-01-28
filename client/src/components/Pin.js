@@ -20,7 +20,7 @@ function Pin(){
           stroke: 'none',
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
         }}
-        
+        // onClick={() => onClick()}
       >
         <path d={ICON} />
       </svg>

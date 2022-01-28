@@ -1,7 +1,9 @@
 import { useState, useCallback, useRef } from "react";
-import MapGL from "react-map-gl";
-
-
+import MapGL, {
+  Popup,
+  NavigationControl,
+  FullscreenControl,
+} from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
 
 const MAPBOX_TOKEN = ""
@@ -25,6 +27,20 @@ function Map( { geocoderContainerRef } ) {
     []
   );
 
+  const fullscreenControlStyle = {
+    top: 70,
+    left: 0,
+    padding: '10px'
+  };
+
+
+const navStyle = {
+  top: 110,
+  left: 0,
+  padding: '10px'
+};
+
+
   return (
     <MapGL
       {...viewport}
@@ -41,6 +57,9 @@ function Map( { geocoderContainerRef } ) {
           onViewportChange={handleViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
         />
+
+        <FullscreenControl style={fullscreenControlStyle}  />
+        <NavigationControl style={navStyle} />
     </MapGL>
   );
 }
