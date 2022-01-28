@@ -15,7 +15,7 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
-function SignUp() {
+function SignUp( { setCurrentUser } ) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",

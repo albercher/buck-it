@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 
-function SignIn() {
+function SignIn( { setCurrentUser } ) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",

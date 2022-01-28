@@ -35,8 +35,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
+          <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />
         </Routes>
       </BrowserRouter>
     </div>
