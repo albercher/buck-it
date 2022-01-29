@@ -6,7 +6,7 @@ import MapGL, {
 } from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
 
-const MAPBOX_TOKEN = ""
+const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY
 
 function Map( { geocoderContainerRef } ) {
   const [viewport, setViewport] = useState({
