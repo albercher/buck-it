@@ -134,7 +134,7 @@ function Dashboard(props) {
       >
         {/* <Toolbar /> */}
         {/* place contents here */}
-        <Map geocoderContainerRef={geocoderContainerRef} />
+        <Map  />
       </Box>
     </Box>
   );

@@ -53,9 +53,10 @@ const navStyle = {
     >
         <Geocoder
           mapRef={mapRef}
-          containerRef={geocoderContainerRef}
+          // containerRef={geocoderContainerRef}
           onViewportChange={handleViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
+          position="bottom-right"
         />
 
         <FullscreenControl style={fullscreenControlStyle}  />
