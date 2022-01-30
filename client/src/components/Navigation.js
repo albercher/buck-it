@@ -12,6 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 
 import SidebarItem from "./SidebarItem";
+import UserMenu from "./UserMenu";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
@@ -89,7 +90,7 @@ function Navigation({ window, currentUser }) {
             Buck-It
           </Typography>
           {currentUser ? (
-            <Avatar>{currentUser.initials}</Avatar>
+            <UserMenu currentUser={currentUser} />
           ) : (
             <Button variant="text" color="inherit" href="/signin">
               Login
