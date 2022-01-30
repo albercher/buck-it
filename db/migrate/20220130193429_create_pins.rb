@@ -5,8 +5,8 @@ class CreatePins < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :color
       t.string :place_name
-      t.decimal :longitude
-      t.decimal :latitude
+      t.float :longitude
+      t.float :latitude
       t.boolean :visited
       t.belongs_to :user, null: false, foreign_key: true
 

@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2022_01_30_193429) do
     t.text "description"
     t.string "color"
     t.string "place_name"
-    t.decimal "longitude"
-    t.decimal "latitude"
+    t.float "longitude"
+    t.float "latitude"
     t.boolean "visited"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

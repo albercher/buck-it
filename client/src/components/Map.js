@@ -43,17 +43,29 @@ function Map({ pins, setPins, currentUser }) {
     padding: "10px",
   };
 
-  function handleAddPin(result){
+  function handleAddPin(result) {
     let newPinData = {
-      name: "",
-      description: "",
+      // name: "",
+      // description: "",
       place_name: result.place_name,
-      latitude: result.geometry.coordinates[0],
-      longitude: result.geometry.coordinates[1],
-      user_id: currentUser.id
-    }
-    
-  };
+      latitude: result.geometry.coordinates[1],
+      longitude: result.geometry.coordinates[0],
+      user_id: currentUser.id,
+    };
+    fetch("/pins", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPinData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        setPins([...pins, data])
+      });
+    // console.log(result)
+  }
 
   return (
     <MapGL
