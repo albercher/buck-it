@@ -9,7 +9,7 @@ class PinsController < ApplicationController
     if pin.valid?
         render json: pin, status: :created
     else
-        render json: pin.erors.full_messages, status: :unprocessable_entity
+        render json: pin.errors.full_messages, status: :unprocessable_entity
     end
   end
 
