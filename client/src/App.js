@@ -2,7 +2,8 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import Dashboard from "./components/Dashboard";
+import Navigation from "./components/Navigation";
+import Map from "./components/Map";
 
 import './App.css'
 
@@ -37,7 +38,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Navigation />}>
+            <Route path="map" element={<Map />} />
+          </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />
         </Routes>

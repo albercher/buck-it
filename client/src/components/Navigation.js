@@ -19,6 +19,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import Map from "./Map";
 
 import { useState, useRef } from "react";
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 175;
 
@@ -29,7 +30,7 @@ const navList = [
   { name: "Map", icon: <MapOutlinedIcon />, link: "/" },
 ];
 
-function Dashboard(props) {
+function Navigation(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -135,10 +136,10 @@ function Dashboard(props) {
       >
         {/* <Toolbar /> */}
         {/* place contents here */}
-        <Map  />
+        <Outlet  />
       </Box>
     </Box>
   );
 }
 
-export default Dashboard;
+export default Navigation;

@@ -11,13 +11,15 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
 function SignIn( { setCurrentUser } ) {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -40,6 +42,7 @@ function SignIn( { setCurrentUser } ) {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
+          navigate("/");
         });
       } else {
         res.json().then((errors) => {
@@ -112,10 +115,10 @@ function SignIn( { setCurrentUser } ) {
               autoComplete="current-password"
               onChange={handleChange}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth

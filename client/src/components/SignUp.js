@@ -13,9 +13,11 @@ import Typography from "@mui/material/Typography";
 
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp( { setCurrentUser } ) {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -44,6 +46,7 @@ function SignUp( { setCurrentUser } ) {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
+          navigate("/");
         });
       } else {
         res.json().then((errors) => {
@@ -142,14 +145,14 @@ function SignUp( { setCurrentUser } ) {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
