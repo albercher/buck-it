@@ -21,8 +21,8 @@ function SignUp( { setCurrentUser } ) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
   });
 
   const handleChange = (e) => {
@@ -36,7 +36,7 @@ function SignUp( { setCurrentUser } ) {
     e.preventDefault();
     const userCreds = { ...formData };
 
-    fetch("/users", {
+    fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function SignUp( { setCurrentUser } ) {
                   name="firstName"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first_name"
                   label="First Name"
                   autoFocus
                   onChange={handleChange}
@@ -115,7 +115,7 @@ function SignUp( { setCurrentUser } ) {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="last_name"
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
