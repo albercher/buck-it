@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :first_name, :last_name, :initials
+  attributes :id, :email, :initials
   has_many :pins
 
   def initials
