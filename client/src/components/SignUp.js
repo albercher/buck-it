@@ -35,7 +35,7 @@ function SignUp( { setCurrentUser } ) {
   function handleSubmit(e) {
     e.preventDefault();
     const userCreds = { ...formData };
-
+    console.log(userCreds)
     fetch("/signup", {
       method: "POST",
       headers: {
@@ -102,10 +102,10 @@ function SignUp( { setCurrentUser } ) {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="first_name"
                   required
                   fullWidth
-                  id="first_name"
+                  id="firstName"
                   label="First Name"
                   autoFocus
                   onChange={handleChange}
@@ -115,9 +115,9 @@ function SignUp( { setCurrentUser } ) {
                 <TextField
                   required
                   fullWidth
-                  id="last_name"
+                  id="lastName"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="family-name"
                   onChange={handleChange}
                 />
