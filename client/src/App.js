@@ -16,7 +16,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // ? might be able to get rid of styled components
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -24,21 +23,16 @@ function App() {
       if (res.ok) {
         res.json().then((user) => {
           setCurrentUser(user);
-          setIsAuthenticated(true);
         });
       }
     });
   }, []);
 
-  // if (!isAuthenticated) {
-  //   return <div></div>;
-  // }
-
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigation />}>
+          <Route path="/" element={<Navigation currentUser={currentUser} />}>
             <Route path="map" element={<Map />} />
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />

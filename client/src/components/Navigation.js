@@ -8,7 +8,8 @@ import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 
 import SidebarItem from "./SidebarItem";
 
@@ -30,15 +31,15 @@ const navList = [
   { name: "Map", icon: <MapOutlinedIcon />, link: "/" },
 ];
 
-function Navigation(props) {
-  const { window } = props;
+function Navigation({ window, currentUser }) {
+  // const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
-   // Used to access child imperatively
+
+  // Used to access child imperatively
   // from docs: Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
   const geocoderContainerRef = useRef();
 
@@ -74,7 +75,7 @@ function Navigation(props) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -87,7 +88,13 @@ function Navigation(props) {
           <Typography variant="h6" noWrap component="div">
             Buck-It
           </Typography>
-          <Avatar>AB</Avatar>
+          {currentUser ? (
+            <Avatar>AB</Avatar>
+          ) : (
+            <Button variant="text" color="inherit" href="/signin">
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Box
@@ -136,7 +143,7 @@ function Navigation(props) {
       >
         {/* <Toolbar /> */}
         {/* place contents here */}
-        <Outlet  />
+        <Outlet />
       </Box>
     </Box>
   );
