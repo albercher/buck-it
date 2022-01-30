@@ -64,6 +64,8 @@ const [popupInfo, setPopupInfo] = useState(null);
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="bottom-right"
           onResult={(result)=>{console.log(result)}}
+          // language="en"
+          // types={"country","region","district","place","locality", "neighborhood", "poi"}
         />
 
         <FullscreenControl style={fullscreenControlStyle}  />
