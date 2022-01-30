@@ -89,7 +89,7 @@ function Navigation({ window, currentUser }) {
             Buck-It
           </Typography>
           {currentUser ? (
-            <Avatar>AB</Avatar>
+            <Avatar>{currentUser.initials}</Avatar>
           ) : (
             <Button variant="text" color="inherit" href="/signin">
               Login

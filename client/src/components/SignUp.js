@@ -35,7 +35,7 @@ function SignUp( { setCurrentUser } ) {
   function handleSubmit(e) {
     e.preventDefault();
     const userCreds = { ...formData };
-    console.log(userCreds)
+    // console.log(userCreds)
     fetch("/signup", {
       method: "POST",
       headers: {
