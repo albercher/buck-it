@@ -32,7 +32,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigation currentUser={currentUser} />}>
+          <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
             <Route path="map" element={<Map />} />
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />

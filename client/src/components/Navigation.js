@@ -32,7 +32,7 @@ const navList = [
   { name: "Map", icon: <MapOutlinedIcon />, link: "/" },
 ];
 
-function Navigation({ window, currentUser }) {
+function Navigation({ window, currentUser, setCurrentUser }) {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -90,7 +90,7 @@ function Navigation({ window, currentUser }) {
             Buck-It
           </Typography>
           {currentUser ? (
-            <UserMenu currentUser={currentUser} />
+            <UserMenu currentUser={currentUser} setCurrentUser={setCurrentUser} />
           ) : (
             <Button variant="text" color="inherit" href="/signin">
               Login

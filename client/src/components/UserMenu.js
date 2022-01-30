@@ -5,13 +5,15 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
 
 import { useState } from "react";
 
 const settings = ['Logout'];
 
 
-function UserMenu({ currentUser }) {
+function UserMenu({ currentUser, setCurrentUser }) {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -21,6 +23,15 @@ function UserMenu({ currentUser }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    fetch("/logout", { method: "DELETE" }).then((res) => {
+      if (res.ok) {
+        setCurrentUser(null);
+      }
+    });
+  };
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -44,11 +55,10 @@ function UserMenu({ currentUser }) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon fontSize="small"><Logout /></ListItemIcon>
+            <Typography textAlign="center">Logout</Typography>
           </MenuItem>
-        ))}
       </Menu>
     </Box>
   );
