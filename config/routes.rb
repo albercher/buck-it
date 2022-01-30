@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pins
+  resources :pins, only: [:create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get '/users', to: "users#index"
+
 
 end
