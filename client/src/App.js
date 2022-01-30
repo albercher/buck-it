@@ -18,6 +18,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
+  // test data
+  const [pins, setPins] = useState([
+    {city:"New York", state:"New York",latitude:40.6643,longitude:-73.9385},
+    {city:"Los Angeles",state:"California",latitude:34.0194,longitude:-118.4108},
+    {city:"Chicago",state:"Illinois",latitude:41.8376,longitude:-87.6818},
+    {city:"Houston",state:"Texas",latitude:29.7805,longitude:-95.3863},
+])
+
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
@@ -33,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
-            <Route path="map" element={<Map />} />
+            <Route path="map" element={<Map pins={pins} setPins={setPins} />} />
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />

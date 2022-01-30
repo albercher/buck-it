@@ -11,7 +11,7 @@ import PinInfo from "./PinInfo";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY
 
-function Map( { geocoderContainerRef } ) {
+function Map({ pins, setPins }) {
   const [viewport, setViewport] = useState({
     longitude: 10,
     latitude: 90,
@@ -63,19 +63,19 @@ const [popupInfo, setPopupInfo] = useState(null);
           onViewportChange={handleViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           position="bottom-right"
+          onResult={(result)=>{console.log(result)}}
         />
 
         <FullscreenControl style={fullscreenControlStyle}  />
         <NavigationControl style={navStyle} />
 
-        <Pin latitude={48.8566} longitude={2.3522} onClick={setPopupInfo} />
-
+        <Pin data={pins} onClick={setPopupInfo} />
         {popupInfo && (
           <Popup
             tipSize={5}
             anchor="top"
-            longitude={2.3522}
-            latitude={48.8566}
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
             closeOnClick={false}
             onClose={setPopupInfo}
           >
