@@ -4,19 +4,20 @@ import MapGL, {
   NavigationControl,
   FullscreenControl,
 } from "react-map-gl";
-import Geocoder from 'react-map-gl-geocoder';
+import Geocoder from "react-map-gl-geocoder";
 
 import Pin from "./Pin";
 import PinInfo from "./PinInfo";
 
-const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY
+const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY;
 
-function Map({ pins, setPins }) {
+function Map({ pins, setPins, currentUser }) {
   const [viewport, setViewport] = useState({
     longitude: 10,
     latitude: 90,
     zoom: 1,
   });
+  const [popupInfo, setPopupInfo] = useState(null);
 
   // Used to access child imperatively
   // from docs: Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
@@ -33,19 +34,26 @@ function Map({ pins, setPins }) {
   const fullscreenControlStyle = {
     top: 70,
     left: 0,
-    padding: '10px'
+    padding: "10px",
   };
 
+  const navStyle = {
+    top: 110,
+    left: 0,
+    padding: "10px",
+  };
 
-const navStyle = {
-  top: 110,
-  left: 0,
-  padding: '10px'
-};
-
-const [popupInfo, setPopupInfo] = useState(null);
-
-
+  function handleAddPin(result){
+    let newPinData = {
+      name: "",
+      description: "",
+      place_name: result.place_name,
+      latitude: result.geometry.coordinates[0],
+      longitude: result.geometry.coordinates[1],
+      user_id: currentUser.id
+    }
+    
+  };
 
   return (
     <MapGL
@@ -57,34 +65,35 @@ const [popupInfo, setPopupInfo] = useState(null);
       onViewportChange={handleViewportChange}
       mapboxApiAccessToken={MAPBOX_TOKEN}
     >
-        <Geocoder
-          mapRef={mapRef}
-          // containerRef={geocoderContainerRef}
-          onViewportChange={handleViewportChange}
-          mapboxApiAccessToken={MAPBOX_TOKEN}
-          position="bottom-right"
-          onResult={(result)=>{console.log(result)}}
-          // language="en"
-          // types={"country","region","district","place","locality", "neighborhood", "poi"}
-        />
+      <Geocoder
+        mapRef={mapRef}
+        // containerRef={geocoderContainerRef}
+        onViewportChange={handleViewportChange}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        position="bottom-right"
+        onResult={(result) => {
+          handleAddPin(result.result);
+        }}
+        // language="en"
+        // types={"country","region","district","place","locality", "neighborhood", "poi"}
+      />
 
-        <FullscreenControl style={fullscreenControlStyle}  />
-        <NavigationControl style={navStyle} />
+      <FullscreenControl style={fullscreenControlStyle} />
+      <NavigationControl style={navStyle} />
 
-        <Pin data={pins} onClick={setPopupInfo} />
-        {popupInfo && (
-          <Popup
-            tipSize={5}
-            anchor="top"
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
-            closeOnClick={false}
-            onClose={setPopupInfo}
-          >
-            <PinInfo info={popupInfo} />
-          </Popup>
-        )}
-
+      <Pin data={pins} onClick={setPopupInfo} />
+      {popupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={popupInfo.longitude}
+          latitude={popupInfo.latitude}
+          closeOnClick={false}
+          onClose={setPopupInfo}
+        >
+          <PinInfo info={popupInfo} />
+        </Popup>
+      )}
     </MapGL>
   );
 }

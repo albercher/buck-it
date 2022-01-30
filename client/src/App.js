@@ -41,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
-            <Route path="map" element={<Map pins={pins} setPins={setPins} />} />
+            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />} />
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />
