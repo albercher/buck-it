@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Avatar from '@mui/material/Avatar';
 
 import SidebarItem from "./SidebarItem";
 
@@ -72,7 +73,7 @@ function Dashboard(props) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -85,7 +86,7 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div">
             Buck-It
           </Typography>
-          <div ref={geocoderContainerRef} />
+          <Avatar>AB</Avatar>
         </Toolbar>
       </AppBar>
       <Box

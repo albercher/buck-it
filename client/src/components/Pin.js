@@ -9,8 +9,9 @@ const SIZE = 20;
 // Performance notes: if a large number of markers are needed, it's generally
 // favorable to cache the <Marker> nodes, so that we don't rerender them when 
 // the viewport changes.
-function Pin(){
-    <Marker longitude={} latitude={}>
+function Pin( {longitude, latitude, onClick} ){
+return (
+<Marker longitude={longitude} latitude={latitude}>
     <svg
         height={SIZE}
         viewBox="0 0 24 24"
@@ -20,11 +21,12 @@ function Pin(){
           stroke: 'none',
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
         }}
-        // onClick={() => onClick()}
+        onClick={() => onClick("test")}
       >
         <path d={ICON} />
       </svg>
     </Marker>
+    )
 };
 
 export default Pin;

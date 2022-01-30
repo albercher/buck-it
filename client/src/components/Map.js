@@ -6,6 +6,9 @@ import MapGL, {
 } from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
 
+import Pin from "./Pin";
+import PinInfo from "./PinInfo";
+
 const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY
 
 function Map( { geocoderContainerRef } ) {
@@ -40,6 +43,9 @@ const navStyle = {
   padding: '10px'
 };
 
+const [popupInfo, setPopupInfo] = useState(null);
+
+
 
   return (
     <MapGL
@@ -61,6 +67,22 @@ const navStyle = {
 
         <FullscreenControl style={fullscreenControlStyle}  />
         <NavigationControl style={navStyle} />
+
+        <Pin latitude={48.8566} longitude={2.3522} onClick={setPopupInfo} />
+
+        {popupInfo && (
+          <Popup
+            tipSize={5}
+            anchor="top"
+            longitude={2.3522}
+            latitude={48.8566}
+            closeOnClick={false}
+            onClose={setPopupInfo}
+          >
+            <PinInfo info={popupInfo} />
+          </Popup>
+        )}
+
     </MapGL>
   );
 }
