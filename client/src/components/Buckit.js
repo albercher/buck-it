@@ -18,8 +18,8 @@ import { useState } from "react";
 
 // import { HuePicker } from 'react-color'
 
-function Buckit({ info }) {
-  const [editInfo, setEditInfo] = useState(false);
+function Buckit({ info, setPins, pins, index }) {
+  const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
   //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
   const [editForm, setEditForm] = useState({
     name: info.name,
@@ -27,9 +27,6 @@ function Buckit({ info }) {
     color: info.color,
     //   color: info.color
   });
-
-//   console.log(info)
-  //   console.log(editForm)
 
   function handleChange(e) {
     setEditForm({
@@ -41,8 +38,8 @@ function Buckit({ info }) {
 
   function handleSave(e) {
     e.preventDefault();
-    console.log(editForm);
 
+    // update on backend
     fetch("/pins/" + info.id, {
       method: "PATCH",
       headers: {
@@ -53,9 +50,20 @@ function Buckit({ info }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        // close the form
+        setEditInfo(!editInfo);
+
+        // update pins array with updated pins
+        let newArr = [...pins];
+        newArr[index] = data;
+        
+        setPins(newArr);
+
+
       });
   }
 
+  // show or hide form
   function handleEdit() {
     setEditInfo(!editInfo);
   }
