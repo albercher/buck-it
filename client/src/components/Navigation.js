@@ -17,7 +17,7 @@ import UserMenu from "./UserMenu";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-
+import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
 import Map from "./Map";
 
 import { useState, useRef } from "react";
@@ -30,7 +30,7 @@ const navList = [
   { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
   { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
-  // { name: "Add Pin", icon: <AddLocationAltOutlinedIcon />, link: "/map" },
+  { name: "My Buck-Its", icon: <RoomOutlinedIcon />, link: "/mybuckits" },
 ];
 
 function Navigation({ window, currentUser, setCurrentUser }) {

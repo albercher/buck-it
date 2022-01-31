@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
 import Map from "./components/Map";
 import AddPin from "./components/AddPin";
+import MyBuckits from "./components/MyBuckits";
 
 import './App.css'
 
@@ -37,9 +38,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
-            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />}>
-              {/* <Route path="newpin" element={<AddPin />} /> */}
-            </Route>
+            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />} />
+            <Route path="mybuckits" element={<MyBuckits pins={pins} setPins={setPins} />} />
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />
