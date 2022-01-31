@@ -22,11 +22,13 @@ function Buckit({ info }) {
   const [editInfo, setEditInfo] = useState(false);
   //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
   const [editForm, setEditForm] = useState({
-    name: "",
-    description: "",
+    name: info.name,
+    description: info.description,
+    color: info.color,
     //   color: info.color
   });
 
+//   console.log(info)
   //   console.log(editForm)
 
   function handleChange(e) {
@@ -40,7 +42,18 @@ function Buckit({ info }) {
   function handleSave(e) {
     e.preventDefault();
     console.log(editForm);
-    // TODO: Insert patch request here
+
+    fetch("/pins/" + info.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editForm),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      });
   }
 
   function handleEdit() {
@@ -48,8 +61,8 @@ function Buckit({ info }) {
   }
 
   return (
-    <Grid item xs={12} sm={"auto"}>
-      <Card>
+    <Grid item xs={12} sm={10} md={4}>
+      <Card sx={{}}>
         <CardHeader
           disableTypography
           action={
@@ -62,13 +75,18 @@ function Buckit({ info }) {
               {info.name ? info.name : "Untitled Buckit"}
             </Typography>
           }
-          sx={{ borderTop: 2, borderTopColor: "#FF0000" }}
+          sx={{ borderTop: 2, borderTopColor: editForm.color }}
         />
 
         {editInfo ? (
           // Card Edit
           <CardContent sx={{ textAlign: "center" }}>
-            <Box component="form" noValidate autoComplete="off" onSubmit={handleSave}>
+            <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              onSubmit={handleSave}
+            >
               <Grid container>
                 <Grid item xs={12}>
                   <TextField
@@ -78,6 +96,7 @@ function Buckit({ info }) {
                     label="Name"
                     variant="standard"
                     onChange={handleChange}
+                    value={editForm.name || ""}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -88,6 +107,7 @@ function Buckit({ info }) {
                     variant="standard"
                     fullWidth
                     onChange={handleChange}
+                    value={editForm.description || ""}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -116,11 +136,6 @@ function Buckit({ info }) {
           // Card
           <CardContent sx={{ textAlign: "center" }}>
             <Grid container>
-              {info.name ? (
-                <Grid item xs={12}>
-                  <Typography>{info.name}</Typography>
-                </Grid>
-              ) : null}
               {info.description ? (
                 <Grid item xs={12}>
                   <Typography>{info.description}</Typography>
