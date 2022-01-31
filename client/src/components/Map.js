@@ -6,6 +6,9 @@ import MapGL, {
 } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 
+import CustomButton from "./CustomButton";
+import AddPin from "./AddPin";
+
 import Pin from "./Pin";
 import PinInfo from "./PinInfo";
 
@@ -18,6 +21,9 @@ function Map({ pins, setPins, currentUser }) {
     zoom: 1,
   });
   const [popupInfo, setPopupInfo] = useState(null);
+  const [addPin, setAddPin] = useState(false);
+  const [tempPin, setTempPin] = useState(false);
+
 
   // Used to access child imperatively
   // from docs: Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
@@ -63,8 +69,8 @@ function Map({ pins, setPins, currentUser }) {
       .then((data) => {
         console.log("Success:", data);
         setPins([...pins, data])
+        setPopupInfo(data)
       });
-    // console.log(result)
   }
 
   return (
@@ -92,6 +98,10 @@ function Map({ pins, setPins, currentUser }) {
 
       <FullscreenControl style={fullscreenControlStyle} />
       <NavigationControl style={navStyle} />
+      {/* <CustomButton setAddPin={setAddPin} addPin={addPin} /> */}
+      {addPin ? <AddPin /> : null}
+
+
 
       <Pin data={pins} onClick={setPopupInfo} />
       {popupInfo && (
@@ -100,8 +110,9 @@ function Map({ pins, setPins, currentUser }) {
           anchor="top"
           longitude={popupInfo.longitude}
           latitude={popupInfo.latitude}
-          closeOnClick={false}
+          closeOnClick={true}
           onClose={setPopupInfo}
+          dynamicPosition={false}
         >
           <PinInfo info={popupInfo} />
         </Popup>

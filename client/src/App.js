@@ -4,6 +4,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
 import Map from "./components/Map";
+import AddPin from "./components/AddPin";
 
 import './App.css'
 
@@ -17,7 +18,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [pins, setPins] = useState([])
+  const [pins, setPins] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -30,12 +31,15 @@ function App() {
     });
   }, []);
   
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
-            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />} />
+            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />}>
+              {/* <Route path="newpin" element={<AddPin />} /> */}
+            </Route>
           </Route>
           <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
           <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />

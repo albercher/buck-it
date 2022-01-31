@@ -1,16 +1,28 @@
-/* .outer-button-div {
+.outer-button-div {
   position: absolute;
   top: 208px;
   left: 0px;
   padding: 10px;
 }
 
-.custom-icon{
-margin: 0;
-position: absolute;
-top: 50%;
-left: 50%;
--ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);
+.custom-icon {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
- */
+
+#addpin {
+  position: absolute;
+  top: 260px;
+  left: 0px;
+  background-color: white;
+  padding: 10px;
+  margin: 0 10px;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  z-index: 1000;
+  cursor: auto;
+}

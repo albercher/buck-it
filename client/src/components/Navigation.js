@@ -10,7 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-
+import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
 import SidebarItem from "./SidebarItem";
 import UserMenu from "./UserMenu";
 
@@ -29,7 +29,8 @@ const drawerWidth = 175;
 const navList = [
   { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
-  { name: "Map", icon: <MapOutlinedIcon />, link: "/" },
+  { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
+  // { name: "Add Pin", icon: <AddLocationAltOutlinedIcon />, link: "/map" },
 ];
 
 function Navigation({ window, currentUser, setCurrentUser }) {
