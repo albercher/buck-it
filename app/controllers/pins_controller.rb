@@ -13,6 +13,20 @@ class PinsController < ApplicationController
     end
   end
 
+  def update
+    pin = Pin.find_by_id(params[:id])
+
+    if pin
+      if pin.update(pin_params)
+        render json: pin, status: :ok
+      else
+        render json: {error: pin.errors.full_messages}
+      end
+    else
+      render json: {error: "Pin not found"}, status: :not_found
+    end
+  end
+
   private
 
   def pin_params
