@@ -8,17 +8,14 @@ import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
-import SidebarItem from "./SidebarItem";
-import UserMenu from "./UserMenu";
-
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import RoomOutlinedIcon from '@mui/icons-material/RoomOutlined';
-import Map from "./Map";
+import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
+
+import SidebarItem from "./SidebarItem";
+import UserMenu from "./UserMenu";
 
 import { useState, useRef } from "react";
 import { Outlet } from "react-router-dom";
@@ -91,7 +88,10 @@ function Navigation({ window, currentUser, setCurrentUser }) {
             Buck-It
           </Typography>
           {currentUser ? (
-            <UserMenu currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <UserMenu
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
           ) : (
             <Button variant="text" color="inherit" href="/signin">
               Login

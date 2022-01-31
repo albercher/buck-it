@@ -8,29 +8,31 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const SIZE = 20;
 
-
-
 // Performance notes: if a large number of markers are needed, it's generally
-// favorable to cache the <Marker> nodes, so that we don't rerender them when 
+// favorable to cache the <Marker> nodes, so that we don't rerender them when
 // the viewport changes.
-function Pin( {data, onClick} ){
-return data.map((city, index)=>(
-<Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
-    <svg
+function Pin({ data, onClick }) {
+  return data.map((city, index) => (
+    <Marker
+      key={`marker-${index}`}
+      longitude={city.longitude}
+      latitude={city.latitude}
+    >
+      <svg
         height={SIZE}
         viewBox="0 0 24 24"
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
           fill: city.color,
-          stroke: 'none',
-          transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
+          stroke: "none",
+          transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
         }}
         onClick={() => onClick(city)}
       >
         <path d={ICON} />
       </svg>
     </Marker>
-    ));
-};
+  ));
+}
 
 export default memo(Pin);

@@ -6,9 +6,6 @@ import MapGL, {
 } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 
-import CustomButton from "./CustomButton";
-import AddPin from "./AddPin";
-
 import Pin from "./Pin";
 import PinInfo from "./PinInfo";
 
@@ -21,9 +18,6 @@ function Map({ pins, setPins, currentUser }) {
     zoom: 1,
   });
   const [popupInfo, setPopupInfo] = useState(null);
-  const [addPin, setAddPin] = useState(false);
-  const [tempPin, setTempPin] = useState(false);
-
 
   // Used to access child imperatively
   // from docs: Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
@@ -51,8 +45,6 @@ function Map({ pins, setPins, currentUser }) {
 
   function handleAddPin(result) {
     let newPinData = {
-      // name: "",
-      // description: "",
       place_name: result.place_name,
       latitude: result.geometry.coordinates[1],
       longitude: result.geometry.coordinates[0],
@@ -68,8 +60,8 @@ function Map({ pins, setPins, currentUser }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        setPins([...pins, data])
-        setPopupInfo(data)
+        setPins([...pins, data]);
+        setPopupInfo(data);
       });
   }
 
@@ -85,23 +77,16 @@ function Map({ pins, setPins, currentUser }) {
     >
       <Geocoder
         mapRef={mapRef}
-        // containerRef={geocoderContainerRef}
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
         position="bottom-right"
         onResult={(result) => {
           handleAddPin(result.result);
         }}
-        // language="en"
-        // types={"country","region","district","place","locality", "neighborhood", "poi"}
       />
 
       <FullscreenControl style={fullscreenControlStyle} />
       <NavigationControl style={navStyle} />
-      {/* <CustomButton setAddPin={setAddPin} addPin={addPin} /> */}
-      {addPin ? <AddPin /> : null}
-
-
 
       <Pin data={pins} onClick={setPopupInfo} />
       {popupInfo && (

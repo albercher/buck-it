@@ -10,8 +10,6 @@ import Logout from "@mui/icons-material/Logout";
 
 import { useState } from "react";
 
-const settings = ['Logout'];
-
 
 function UserMenu({ currentUser, setCurrentUser }) {
   const [anchorElUser, setAnchorElUser] = useState(null);

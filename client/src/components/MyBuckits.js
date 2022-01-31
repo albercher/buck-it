@@ -8,7 +8,13 @@ function MyBuckits({ pins, setPins }) {
     <Box sx={{ marginTop: "60px", padding: "20px", flexGrow: 1 }}>
       <Grid container spacing={3} justifyContent={"center"}>
         {pins.map((pin, index) => (
-          <Buckit key={pin.id} info={pin} setPins={setPins} pins={pins} index={index} />
+          <Buckit
+            key={pin.id}
+            info={pin}
+            setPins={setPins}
+            pins={pins}
+            index={index}
+          />
         ))}
       </Grid>
     </Box>

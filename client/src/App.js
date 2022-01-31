@@ -4,17 +4,15 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
 import Map from "./components/Map";
-import AddPin from "./components/AddPin";
 import MyBuckits from "./components/MyBuckits";
 
-import './App.css'
-
+import "./App.css";
 
 //Mapbox Geocoder CSS
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 // Mapbox css
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 // ? might be able to get rid of styled components
 
 function App() {
@@ -31,18 +29,39 @@ function App() {
       }
     });
   }, []);
-  
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />}>
-            <Route path="map" element={<Map pins={pins} setPins={setPins} currentUser={currentUser} />} />
-            <Route path="mybuckits" element={<MyBuckits pins={pins} setPins={setPins} />} />
+          <Route
+            path="/"
+            element={
+              <Navigation
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          >
+            <Route
+              path="map"
+              element={
+                <Map pins={pins} setPins={setPins} currentUser={currentUser} />
+              }
+            />
+            <Route
+              path="mybuckits"
+              element={<MyBuckits pins={pins} setPins={setPins} />}
+            />
           </Route>
-          <Route path="/signin" element={<SignIn setCurrentUser={setCurrentUser} />} />
-          <Route path="/signup" element={<SignUp setCurrentUser={setCurrentUser} />} />
+          <Route
+            path="/signin"
+            element={<SignIn setCurrentUser={setCurrentUser} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp setCurrentUser={setCurrentUser} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
