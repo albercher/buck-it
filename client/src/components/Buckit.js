@@ -16,21 +16,41 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
+// import { HuePicker } from 'react-color'
+
 function Buckit({ info }) {
   const [editInfo, setEditInfo] = useState(false);
+  //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
+  const [editForm, setEditForm] = useState({
+    name: "",
+    description: "",
+    //   color: info.color
+  });
+
+  //   console.log(editForm)
+
+  function handleChange(e) {
+    setEditForm({
+      ...editForm,
+      [e.target.name]: e.target.value,
+    });
+    // setHexColor({ hex: color.hex });
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+    console.log(editForm);
+    // TODO: Insert patch request here
+  }
 
   function handleEdit() {
     setEditInfo(!editInfo);
   }
 
   return (
-    <Grid item xs={12} sm="auto">
+    <Grid item xs={12} sm={"auto"}>
       <Card>
         <CardHeader
-          // avatar={
-          //     <Avatar sx={{ bgcolor: "#FF0000" }} />
-          //     <Box sx={{ backgroundColor: "#FF0000", padding: "10px"}}></Box>
-          // }
           disableTypography
           action={
             <IconButton aria-label="edit" onClick={handleEdit}>
@@ -46,41 +66,75 @@ function Buckit({ info }) {
         />
 
         {editInfo ? (
-          <CardContent>
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-            >
+          // Card Edit
+          <CardContent sx={{ textAlign: "center" }}>
+            <Box component="form" noValidate autoComplete="off" onSubmit={handleSave}>
               <Grid container>
-                  <Grid item xs={12}>
-                      <TextField id="standard-basic" fullWidth label="Name" variant="standard" />
-                  </Grid>
-                  <Grid item xs={12}>
+                <Grid item xs={12}>
                   <TextField
+                    name="name"
+                    id="standard-basic"
+                    fullWidth
+                    label="Name"
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="description"
                     id="standard-basic"
                     label="Description"
                     variant="standard"
                     fullWidth
+                    onChange={handleChange}
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  {/* <Box sx={{ width: "50px" }}>
+                    <HuePicker
+                            color={ editForm.color }
+                            onChange={ (color) => handleChange(color.hex) }
+                          />
+                </Box> */}
+                </Grid>
               </Grid>
+              <Button type="submit" variant="contained" disableElevation>
+                Save
+              </Button>
             </Box>
-            <Typography variant="body2">{info.place_name}</Typography>
-            <Typography variant="overline">
-              {info.latitude}, {info.longitude}
-            </Typography>
+            <Grid item xs={12}>
+              <Typography variant="body2">{info.place_name}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="overline">
+                {info.latitude}, {info.longitude}
+              </Typography>
+            </Grid>
           </CardContent>
         ) : (
-          <CardContent>
-            {info.name ? <Typography>{info.name}</Typography> : null}
-            {info.description ? (
-              <Typography>{info.description}</Typography>
-            ) : null}
-            <Typography variant="body2">{info.place_name}</Typography>
-            <Typography variant="overline">
-              {info.latitude}, {info.longitude}
-            </Typography>
+          // Card
+          <CardContent sx={{ textAlign: "center" }}>
+            <Grid container>
+              {info.name ? (
+                <Grid item xs={12}>
+                  <Typography>{info.name}</Typography>
+                </Grid>
+              ) : null}
+              {info.description ? (
+                <Grid item xs={12}>
+                  <Typography>{info.description}</Typography>
+                </Grid>
+              ) : null}
+              <Grid item xs={12}>
+                <Typography variant="body2">{info.place_name}</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="overline">
+                  {info.latitude}, {info.longitude}
+                </Typography>
+              </Grid>
+            </Grid>
           </CardContent>
         )}
       </Card>
