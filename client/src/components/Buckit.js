@@ -17,6 +17,7 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
 // import { HuePicker } from 'react-color'
+import { TwitterPicker } from "react-color";
 
 function Buckit({ info, setPins, pins, index }) {
   const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
@@ -35,6 +36,7 @@ function Buckit({ info, setPins, pins, index }) {
     });
     // setHexColor({ hex: color.hex });
   }
+  // console.log(editForm)
 
   function handleSave(e) {
     e.preventDefault();
@@ -61,6 +63,14 @@ function Buckit({ info, setPins, pins, index }) {
       });
   }
 
+  function handleColorChange(color, e) {
+    // console.log(color.hex);
+    setEditForm({
+      ...editForm,
+      color: color.hex,
+    });
+  }
+
   // show or hide form
   function handleEdit() {
     setEditInfo(!editInfo);
@@ -78,7 +88,16 @@ function Buckit({ info, setPins, pins, index }) {
           }
           title={
             <Grid container>
-              <Grid item sx={{ backgroundColor: "#ff0000", width: "30px", height: "30px", borderRadius: "50%", marginRight: "10px" }}></Grid>
+              <Grid
+                item
+                sx={{
+                  backgroundColor: editForm.color,
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "50%",
+                  marginRight: "10px",
+                }}
+              ></Grid>
               <Typography variant="h6">
                 {info.name ? info.name : "Untitled Buckit"}
               </Typography>
@@ -86,7 +105,9 @@ function Buckit({ info, setPins, pins, index }) {
           }
           sx={{ paddingBottom: "5px" }}
         />
-        <CardContent sx={{ paddingTop: "5px", '&:last-child': {paddingBottom: "16px"} }}>
+        <CardContent
+          sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
+        >
           {editInfo ? (
             // Card Edit
             <Box
@@ -119,13 +140,25 @@ function Buckit({ info, setPins, pins, index }) {
                     multiline
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  {/* <Box sx={{ width: "50px" }}>
-                    <HuePicker
-                            color={ editForm.color }
-                            onChange={ (color) => handleChange(color.hex) }
-                          />
-                </Box> */}
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                  <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
+                    Pin Color
+                  </Typography>
+                  <TwitterPicker
+                    color={editForm.color}
+                    onChange={handleColorChange}
+                    triangle="hide"
+                    styles={{
+                      default: {
+                        card: {
+                          boxShadow: "none",
+                        },
+                        body: {
+                          padding: "4px 0px 0px 0px",
+                        },
+                      },
+                    }}
+                  />
                 </Grid>
 
                 <Grid item xs={12}>
