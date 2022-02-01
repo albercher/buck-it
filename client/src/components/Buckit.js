@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -70,15 +71,24 @@ function Buckit({ info, setPins, pins, index }) {
     setEditInfo(!editInfo);
   }
 
+  function handleDelete(){
+    
+  }
+
   return (
     <Grid item xs={12} sm={10} md={4}>
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
         {/* height 100% for card */}
         <CardHeader
           action={
+            <Box>
             <IconButton size="small" aria-label="edit" onClick={handleEdit}>
               <ModeEditOutlineOutlinedIcon />
             </IconButton>
+            <IconButton size="small" aria-label="edit" onClick={handleDelete}>
+              <DeleteOutlinedIcon />
+            </IconButton>
+            </Box>
           }
           title={
             <Grid container>
