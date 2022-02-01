@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -71,8 +71,16 @@ function Buckit({ info, setPins, pins, index }) {
     setEditInfo(!editInfo);
   }
 
-  function handleDelete(){
-    
+  function handleDelete() {
+    fetch("/pins/" + info.id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        let filteredArray = pins.filter(pin => pin.id !== info.id);
+        setPins(filteredArray);
+      });
   }
 
   return (
@@ -82,12 +90,12 @@ function Buckit({ info, setPins, pins, index }) {
         <CardHeader
           action={
             <Box>
-            <IconButton size="small" aria-label="edit" onClick={handleEdit}>
-              <ModeEditOutlineOutlinedIcon />
-            </IconButton>
-            <IconButton size="small" aria-label="edit" onClick={handleDelete}>
-              <DeleteOutlinedIcon />
-            </IconButton>
+              <IconButton size="small" aria-label="edit" onClick={handleEdit}>
+                <ModeEditOutlineOutlinedIcon />
+              </IconButton>
+              <IconButton size="small" aria-label="edit" onClick={handleDelete}>
+                <DeleteOutlinedIcon />
+              </IconButton>
             </Box>
           }
           title={

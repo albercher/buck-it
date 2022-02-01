@@ -32,7 +32,7 @@ class PinsController < ApplicationController
 
     if pin
       pin.destroy
-      head :no_content
+      render json: {}
     else
       render json: {error: "Pin not found"}, status: :not_found
     end
