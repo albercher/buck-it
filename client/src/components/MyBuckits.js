@@ -6,7 +6,7 @@ import Buckit from "./Buckit";
 function MyBuckits({ pins, setPins }) {
   return (
     <Box sx={{ marginTop: "60px", padding: "20px", flexGrow: 1 }}>
-      <Grid container spacing={3} justifyContent={"center"}>
+      <Grid container spacing={1} justifyContent={"center"}>
         {pins.map((pin, index) => (
           <Buckit
             key={pin.id}

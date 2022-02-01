@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
@@ -5,6 +6,7 @@ import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
 import Map from "./components/Map";
 import MyBuckits from "./components/MyBuckits";
+
 
 import "./App.css";
 
@@ -14,6 +16,35 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 // Mapbox css
 import "mapbox-gl/dist/mapbox-gl.css";
 // ? might be able to get rid of styled components
+
+const theme = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#344955',
+    },
+    secondary: {
+      main: '#f9aa33',
+    },
+    background: {
+      default: '#EDF0F2'
+    }
+  },
+  typography: {
+    fontFamily: 'Work Sans',
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        sx: {
+          borderRadius: "25px",
+          minWidth: "100px",
+        },
+        color: "secondary"
+      },
+    },
+  },
+});
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -31,7 +62,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route
@@ -64,7 +95,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 

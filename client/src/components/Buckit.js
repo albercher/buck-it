@@ -56,10 +56,8 @@ function Buckit({ info, setPins, pins, index }) {
         // update pins array with updated pins
         let newArr = [...pins];
         newArr[index] = data;
-        
+
         setPins(newArr);
-
-
       });
   }
 
@@ -70,25 +68,27 @@ function Buckit({ info, setPins, pins, index }) {
 
   return (
     <Grid item xs={12} sm={10} md={4}>
-      <Card sx={{}}>
+      <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
+        {/* height 100% for card */}
         <CardHeader
-          disableTypography
           action={
-            <IconButton aria-label="edit" onClick={handleEdit}>
+            <IconButton size="small" aria-label="edit" onClick={handleEdit}>
               <ModeEditOutlineOutlinedIcon />
             </IconButton>
           }
           title={
-            <Typography variant="h6">
-              {info.name ? info.name : "Untitled Buckit"}
-            </Typography>
+            <Grid container>
+              <Grid item sx={{ backgroundColor: "#ff0000", width: "30px", height: "30px", borderRadius: "50%", marginRight: "10px" }}></Grid>
+              <Typography variant="h6">
+                {info.name ? info.name : "Untitled Buckit"}
+              </Typography>
+            </Grid>
           }
-          sx={{ borderTop: 2, borderTopColor: editForm.color }}
+          sx={{ paddingBottom: "5px" }}
         />
-
-        {editInfo ? (
-          // Card Edit
-          <CardContent sx={{ textAlign: "center" }}>
+        <CardContent sx={{ paddingTop: "5px", '&:last-child': {paddingBottom: "16px"} }}>
+          {editInfo ? (
+            // Card Edit
             <Box
               component="form"
               noValidate
@@ -107,7 +107,7 @@ function Buckit({ info, setPins, pins, index }) {
                     value={editForm.name || ""}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
                   <TextField
                     name="description"
                     id="standard-basic"
@@ -116,6 +116,7 @@ function Buckit({ info, setPins, pins, index }) {
                     fullWidth
                     onChange={handleChange}
                     value={editForm.description || ""}
+                    multiline
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -126,40 +127,51 @@ function Buckit({ info, setPins, pins, index }) {
                           />
                 </Box> */}
                 </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disableElevation
+                    sx={{ my: "10px" }}
+                  >
+                    Save
+                  </Button>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <Typography variant="body2" color="#6d6d6d">
+                    {info.place_name}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} align="right">
+                  <Typography variant="overline" color="#6d6d6d">
+                    {info.latitude}, {info.longitude}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Button type="submit" variant="contained" disableElevation>
-                Save
-              </Button>
             </Box>
-            <Grid item xs={12}>
-              <Typography variant="body2">{info.place_name}</Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="overline">
-                {info.latitude}, {info.longitude}
-              </Typography>
-            </Grid>
-          </CardContent>
-        ) : (
-          // Card
-          <CardContent sx={{ textAlign: "center" }}>
+          ) : (
+            // Card
             <Grid container>
               {info.description ? (
                 <Grid item xs={12}>
-                  <Typography>{info.description}</Typography>
+                  <Typography gutterBottom>{info.description}</Typography>
                 </Grid>
               ) : null}
-              <Grid item xs={12}>
-                <Typography variant="body2">{info.place_name}</Typography>
+              <Grid item xs={6}>
+                <Typography variant="body2" color="#6d6d6d">
+                  {info.place_name}
+                </Typography>
               </Grid>
-              <Grid item xs={12}>
-                <Typography variant="overline">
+              <Grid item xs={6} align="right">
+                <Typography variant="overline" color="#6d6d6d">
                   {info.latitude}, {info.longitude}
                 </Typography>
               </Grid>
             </Grid>
-          </CardContent>
-        )}
+          )}
+        </CardContent>
       </Card>
     </Grid>
   );
