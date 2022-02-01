@@ -8,7 +8,7 @@ function MyBuckits({ pins, setPins }) {
 
 
   return (
-    <Box>
+    <Box sx={{ marginTop: "60px"}}>
       <SortBuckits />
       <Grid
         container

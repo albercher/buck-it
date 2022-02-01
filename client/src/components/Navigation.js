@@ -142,7 +142,7 @@ function Navigation({ window, currentUser, setCurrentUser }) {
         sx={{
           flexGrow: 1,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
-          marginTop: "56px"
+          // marginTop: "56px"
         }}
       >
         {/* <Toolbar /> */}
