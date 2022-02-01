@@ -22,6 +22,8 @@ const theme = createTheme({
     type: 'light',
     primary: {
       main: '#344955',
+      light: '#4A6572',
+      dark: '#232F34'
     },
     secondary: {
       main: '#f9aa33',
@@ -43,6 +45,11 @@ const theme = createTheme({
         color: "secondary"
       },
     },
+    // MuiChip: {
+    //   defaultProps: {
+    //     sx
+    //   }
+    // }
   },
 });
 

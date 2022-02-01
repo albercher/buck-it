@@ -67,6 +67,7 @@ function Navigation({ window, currentUser, setCurrentUser }) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
+        // elevation={0}
         position="fixed"
         sx={{
           // width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -102,7 +103,7 @@ function Navigation({ window, currentUser, setCurrentUser }) {
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
+        aria-label="links"
       >
         <Drawer
           container={container}
@@ -141,6 +142,7 @@ function Navigation({ window, currentUser, setCurrentUser }) {
         sx={{
           flexGrow: 1,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          marginTop: "56px"
         }}
       >
         {/* <Toolbar /> */}
