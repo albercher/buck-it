@@ -1,34 +1,29 @@
 import Stack from "@mui/material/Stack";
-import Chip from "@mui/material/Chip";
 import Toolbar from "@mui/material/Toolbar";
 
-function SortBuckits(){
-    function handleClick() {
-        console.log("clicked");
-      }    
+import SortChip from "./SortChip";
 
-    return(
-        <Toolbar sx={{ margin:'auto', justifyContent: 'center' }}>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            spacing={2}
-          >
-            <Chip
-              label="Chip Filled"
-              color="secondary"
-              size="small"
-              onClick={handleClick}
-              sx={{
-                "&:hover": {
-                  backgroundColor: "secondary.light",
-                },
-              }}
-            />
-          </Stack>
-        </Toolbar>
-    )
+function SortBuckits({ handleSort }) {
+  const sortMethods = ["Name", "Place"];
+
+  return (
+    <Toolbar sx={{ margin: "auto", justifyContent: "center" }}>
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        {sortMethods.map((sort) => (
+          <SortChip
+            key={sortMethods.indexOf(sort)}
+            name={sort}
+            handleSort={handleSort}
+          />
+        ))}
+      </Stack>
+    </Toolbar>
+  );
 }
 
-export default SortBuckits
+export default SortBuckits;
