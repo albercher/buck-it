@@ -9,32 +9,34 @@ import { useState } from "react";
 function MyBuckits({ pins, setPins }) {
 
   // const [sort, setSort] = useState("");
+  // function handleSort(e){
+  //   // console.log(e);
+  //   // setSort(e);
+  //   if(e === "Name"){
+  //     // console.log("set to name")
+  //     let sorted = pins.sort((a,b) => {
+  //       if(a.name < b.name) { return -1; }
+  //       if(a.name > b.name) { return 1; }
+  //       return 0;
+  //     })
+  //     setPins(sorted)
 
-  function handleSort(e){
-    // console.log(e);
-    // setSort(e);
-    let sort = [];
-    if(e === "Name"){
-      // console.log("set to name")
-      sort = pins.sort((a,b) => {
-        if(a.name < b.name) { return -1; }
-        if(a.name > b.name) { return 1; }
-        return 0;
-      })
-    } else if(e === "Place"){
-      // console.log("set to place")
-      sort = pins.sort((a,b) => {
-        if(a.place_name < b.place_name) { return -1; }
-        if(a.place_name > b.place_name) { return 1; }
-        return 0;
-      })
-    }
-    setPins(sort)
-  };
+  //   } else if(e === "Place"){
+  //     // console.log("set to place")
+  //     let sorted = pins.sort((a,b) => {
+  //       if(a.place_name < b.place_name) { return -1; }
+  //       if(a.place_name > b.place_name) { return 1; }
+  //       return 0;
+  //     })
+  //     setPins(sorted)
+  //   }
+  //   // console.log(sorted)
+  //   // setPins(sort)
+  // };
 
   return (
     <Box sx={{ marginTop: "60px"}}>
-      <SortBuckits handleSort={handleSort} />
+      <SortBuckits pins={pins} setPins={setPins} />
       <Grid
         container
         spacing={1}

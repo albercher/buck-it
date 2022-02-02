@@ -3,8 +3,26 @@ import Toolbar from "@mui/material/Toolbar";
 
 import SortChip from "./SortChip";
 
-function SortBuckits({ handleSort }) {
+function SortBuckits({ pins, setPins }) {
   const sortMethods = ["Name", "Place"];
+
+  function handleSort(e){
+    let sorted = [];
+    if(e === "Name"){
+      sorted = pins.sort((a,b) => {
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+      })
+    } else if(e === "Place"){
+      sorted = pins.sort((a,b) => {
+        if(a.place_name < b.place_name) { return -1; }
+        if(a.place_name > b.place_name) { return 1; }
+        return 0;
+      })
+    }
+    setPins([...sorted])
+  };
 
   return (
     <Toolbar sx={{ margin: "auto", justifyContent: "center" }}>
