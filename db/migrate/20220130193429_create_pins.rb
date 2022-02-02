@@ -3,7 +3,7 @@ class CreatePins < ActiveRecord::Migration[7.0]
     create_table :pins do |t|
       t.string :name
       t.text :description
-      t.string :color, default: '#FF0000'
+      t.string :color, default: '#CC2936'
       t.string :place_name
       t.float :longitude
       t.float :latitude

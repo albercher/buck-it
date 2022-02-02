@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_193429) do
   create_table "pins", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "color", default: "#FF0000"
+    t.string "color", default: "#CC2936"
     t.string "place_name"
     t.float "longitude"
     t.float "latitude"
