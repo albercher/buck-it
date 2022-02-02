@@ -157,6 +157,8 @@ function Buckit({ info, setPins, pins, index }) {
                     Pin Color
                   </Typography>
                   <TwitterPicker
+                    // width="100%"
+                    colors={['#cc2936', "#f9AA33","#ffdc14", "#0e6325", "#1e609e", "#714b94", "#c774cf" ]}
                     color={editForm.color}
                     onChange={handleColorChange}
                     triangle="hide"
@@ -168,12 +170,21 @@ function Buckit({ info, setPins, pins, index }) {
                         body: {
                           padding: "4px 0px 0px 0px",
                         },
+                        // input: {
+                        //   width: "20%"
+                        // },
+                        // hash: {
+                        //   width: "10%"
+                        // },
+                        // swatch: {
+                        //   width: "10%"
+                        // },
                       },
                     }}
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ marginTop: "10px"}}>
                   <Button
                     type="submit"
                     variant="contained"
