@@ -12,7 +12,7 @@ function SidebarItem({ icon, text, to }) {
   return (
     <NavLink style={linkStyle} to={to}>
       <ListItem button>
-        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemIcon sx={{ minWidth: "30px" , paddingRight: "10px" }}>{icon}</ListItemIcon>
         <ListItemText primary={text} />
       </ListItem>
     </NavLink>
