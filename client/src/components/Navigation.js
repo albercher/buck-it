@@ -13,6 +13,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
+import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined';
 
 import SidebarItem from "./SidebarItem";
 import UserMenu from "./UserMenu";
@@ -26,6 +27,7 @@ const drawerWidth = 175;
 const navList = [
   { name: "Explore", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "My Buck-Its", icon: <RoomOutlinedIcon />, link: "/mybuckits" },
+  { name: "My Activities", icon: <LocalActivityOutlinedIcon />, link: "/myactivities" },
   { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
 ];
 

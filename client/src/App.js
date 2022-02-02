@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
@@ -6,7 +6,7 @@ import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
 import Map from "./components/Map";
 import MyBuckits from "./components/MyBuckits";
-
+import MyActivities from "./components/MyActivities";
 
 import "./App.css";
 
@@ -19,21 +19,21 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const theme = createTheme({
   palette: {
-    type: 'light',
+    type: "light",
     primary: {
-      main: '#344955',
-      light: '#4A6572',
-      dark: '#232F34'
+      main: "#344955",
+      light: "#4A6572",
+      dark: "#232F34",
     },
     secondary: {
-      main: '#f9aa33',
+      main: "#f9aa33",
     },
     background: {
-      default: '#EDF0F2'
-    }
+      default: "#EDF0F2",
+    },
   },
   typography: {
-    fontFamily: 'Work Sans',
+    fontFamily: "Work Sans",
   },
   components: {
     MuiButton: {
@@ -42,7 +42,7 @@ const theme = createTheme({
           borderRadius: "25px",
           minWidth: "100px",
         },
-        color: "secondary"
+        color: "secondary",
       },
     },
     // MuiChip: {
@@ -90,6 +90,10 @@ function App() {
             <Route
               path="mybuckits"
               element={<MyBuckits pins={pins} setPins={setPins} />}
+            />
+            <Route
+              path="myactivities"
+              element={<MyActivities />}
             />
           </Route>
           <Route
