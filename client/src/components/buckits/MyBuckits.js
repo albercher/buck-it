@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import SortBuckits from "./SortBuckits";
+import SortBuckits from "./sort/SortBuckits";
 import Buckit from "./Buckit";
 
 function MyBuckits({ pins, setPins }) {

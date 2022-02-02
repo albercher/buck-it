@@ -3,10 +3,10 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import Navigation from "./components/Navigation";
-import Map from "./components/Map";
-import MyBuckits from "./components/MyBuckits";
-import MyActivities from "./components/MyActivities";
+import Navigation from "./components/nav/Navigation";
+import Map from "./components/map/Map";
+import MyBuckits from "./components/buckits/MyBuckits";
+import MyActivities from "./components/activities/MyActivities";
 
 import "./App.css";
 
