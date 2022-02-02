@@ -24,10 +24,9 @@ const drawerWidth = 175;
 
 // Navigation Array
 const navList = [
-  { name: "Home", icon: <HomeOutlinedIcon />, link: "/" },
-  { name: "Favorites", icon: <FavoriteBorderOutlinedIcon />, link: "/" },
-  { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
+  { name: "Explore", icon: <HomeOutlinedIcon />, link: "/" },
   { name: "My Buck-Its", icon: <RoomOutlinedIcon />, link: "/mybuckits" },
+  { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
 ];
 
 function Navigation({ window, currentUser, setCurrentUser }) {
