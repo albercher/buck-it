@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_193429) do
+ActiveRecord::Schema.define(version: 2022_02_03_153733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "pin_id", null: false
+    t.boolean "completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pin_id"], name: "index_activities_on_pin_id"
+  end
 
   create_table "pins", force: :cascade do |t|
     t.string "name"
@@ -38,5 +48,6 @@ ActiveRecord::Schema.define(version: 2022_01_30_193429) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "activities", "pins"
   add_foreign_key "pins", "users"
 end
