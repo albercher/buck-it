@@ -16,6 +16,8 @@ import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
 import LocalActivityOutlinedIcon from "@mui/icons-material/LocalActivityOutlined";
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
+import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
 
 import SidebarItem from "./SidebarItem";
 import UserMenu from "./UserMenu";
@@ -27,7 +29,7 @@ const drawerWidth = 175;
 
 // Navigation Array
 const navList = [
-  { title: "Explore", icon: <HomeOutlinedIcon />, link: "/", items: [] },
+  { title: "Explore", icon: <ExploreOutlinedIcon />, link: "/", items: [] },
   {
     title: "Buck-Its",
     icon: <RoomOutlinedIcon />,
@@ -36,19 +38,20 @@ const navList = [
   },
   {
     title: "Activities",
-    icon: <LocalActivityOutlinedIcon />,
-    items: [
-      {
-        title: "Incomplete",
-        icon: <CheckBoxOutlineBlankOutlinedIcon />,
-        link: "/myactivities"
-      },
-      {
-        title: "Complete",
-        icon: <CheckBoxOutlinedIcon />,
-        link: "/myactivities"
-      },
-    ],
+    icon: <LibraryAddCheckOutlinedIcon />,
+    link: "/myactivities"
+    // items: [
+    //   {
+    //     title: "Incomplete",
+    //     icon: <CheckBoxOutlineBlankOutlinedIcon />,
+    //     link: "/myactivities"
+    //   },
+    //   {
+    //     title: "Complete",
+    //     icon: <CheckBoxOutlinedIcon />,
+    //     link: "/myactivities"
+    //   },
+    // ],
   },
   { title: "Map", icon: <MapOutlinedIcon />, link: "/map", items: [] },
 ];
