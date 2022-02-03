@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2022_02_03_153733) do
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.bigint "pin_id", null: false
+    t.bigint "user_id", null: false
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pin_id"], name: "index_activities_on_pin_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "pins", force: :cascade do |t|
@@ -48,6 +48,6 @@ ActiveRecord::Schema.define(version: 2022_02_03_153733) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "activities", "pins"
+  add_foreign_key "activities", "users"
   add_foreign_key "pins", "users"
 end

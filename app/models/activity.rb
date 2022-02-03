@@ -1,4 +1,4 @@
 class Activity < ApplicationRecord
-  belongs_to :pin
+  belongs_to :user
   # , optional: true
 end
