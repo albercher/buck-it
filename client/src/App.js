@@ -56,13 +56,16 @@ const theme = createTheme({
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [pins, setPins] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
+          console.log(user)
           setCurrentUser(user);
           setPins(user.pins);
+          setActivities(user.activities);
         });
       }
     });
@@ -93,7 +96,7 @@ function App() {
             />
             <Route
               path="myactivities"
-              element={<MyActivities />}
+              element={<MyActivities activities={activities} setActivities={setActivities} />}
             />
           </Route>
           <Route

@@ -84,7 +84,7 @@ function Activity({activity}) {
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
         <CardHeader
           avatar={<Checkbox checked={checked} onChange={handleCheck} sx={{ px: "0px" }} />}
-          title={<Typography variant="h6">title of activity</Typography>}
+          title={<Typography variant="h6">{activity.name}</Typography>}
           action={
             <Box>
               <IconButton size="small" aria-label="edit" onClick={handleEdit}>
@@ -144,7 +144,7 @@ function Activity({activity}) {
               </Grid>
             </Box>
           ) : (
-            <Typography>description of activity</Typography>
+            <Typography>{activity.description}</Typography>
           )}
         </CardContent>
       </Card>
