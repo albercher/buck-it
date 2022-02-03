@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :activities
+  resources :activities, only: [:create, :update, :destroy]
   resources :pins, only: [:create, :update, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
