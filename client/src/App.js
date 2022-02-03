@@ -63,10 +63,16 @@ function App() {
       if (res.ok) {
         res.json().then((user) => {
           console.log(user)
+          const userid = user.id
           setCurrentUser(user);
           setPins(user.pins);
           setActivities(user.activities);
-        });
+          // return fetch("/users/" + userid + "/pins")
+        })
+        // .then(response => response.json()).then(data => {
+        //   console.log(data)
+        //   setPins(data)
+        // })
       }
     });
   }, []);

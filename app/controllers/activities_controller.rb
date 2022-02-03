@@ -9,6 +9,16 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def index
+    # if current_user
+    if params[:user_id]
+      act = User.find_by_id(:user_id).activities
+      render json: act
+    else
+      render json: {error: "No activities found"}, status: :not_found
+    end
+  end
+
   private
 
   def activities_params

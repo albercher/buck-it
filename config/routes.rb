@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   get '/users', to: "users#index"
 
 
+  # resources :users, only: [:show] do 
+  #   resources :pins, only: [:index, :create, :update, :destroy]
+  #   resources :activities, only: [:index, :create, :update, :destroy]
+  # end
+
+
 end
