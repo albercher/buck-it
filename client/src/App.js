@@ -102,7 +102,7 @@ function App() {
             />
             <Route
               path="myactivities"
-              element={<MyActivities activities={activities} setActivities={setActivities} />}
+              element={<MyActivities activities={activities} setActivities={setActivities} currentUser={currentUser} />}
             />
           </Route>
           <Route
