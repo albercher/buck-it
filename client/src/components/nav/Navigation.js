@@ -13,7 +13,9 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
-import LocalActivityOutlinedIcon from '@mui/icons-material/LocalActivityOutlined';
+import LocalActivityOutlinedIcon from "@mui/icons-material/LocalActivityOutlined";
+import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 
 import SidebarItem from "./SidebarItem";
 import UserMenu from "./UserMenu";
@@ -25,10 +27,30 @@ const drawerWidth = 175;
 
 // Navigation Array
 const navList = [
-  { name: "Explore", icon: <HomeOutlinedIcon />, link: "/" },
-  { name: "My Buck-Its", icon: <RoomOutlinedIcon />, link: "/mybuckits" },
-  { name: "My Activities", icon: <LocalActivityOutlinedIcon />, link: "/myactivities" },
-  { name: "Map", icon: <MapOutlinedIcon />, link: "/map" },
+  { title: "Explore", icon: <HomeOutlinedIcon />, link: "/", items: [] },
+  {
+    title: "Buck-Its",
+    icon: <RoomOutlinedIcon />,
+    link: "/mybuckits",
+    items: [],
+  },
+  {
+    title: "Activities",
+    icon: <LocalActivityOutlinedIcon />,
+    items: [
+      {
+        title: "Incomplete",
+        icon: <CheckBoxOutlineBlankOutlinedIcon />,
+        link: "/myactivities"
+      },
+      {
+        title: "Complete",
+        icon: <CheckBoxOutlinedIcon />,
+        link: "/myactivities"
+      },
+    ],
+  },
+  { title: "Map", icon: <MapOutlinedIcon />, link: "/map", items: [] },
 ];
 
 function Navigation({ window, currentUser, setCurrentUser }) {
@@ -49,12 +71,10 @@ function Navigation({ window, currentUser, setCurrentUser }) {
       <Toolbar />
       <Divider />
       <List>
-        {navList.map((item) => (
+        {navList.map((item, key) => (
           <SidebarItem
-            key={item.name}
-            text={item.name}
-            icon={item.icon}
-            to={item.link}
+            key={key}
+            item={item}
           />
         ))}
       </List>
