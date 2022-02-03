@@ -10,10 +10,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
+import Collapse from '@mui/material/Collapse';
 
 import { useState } from "react";
 
-function NewActivity({currentUser, activities, setActivities, setNewActivity}) {
+function NewActivity({currentUser, activities, setActivities, setNewActivity, newActivity}) {
+
   const [editForm, setEditForm] = useState({
     name: "",
     description: "",
@@ -42,27 +44,12 @@ function NewActivity({currentUser, activities, setActivities, setNewActivity}) {
         console.log('Success:', data);
         setActivities([data, ...activities]);
         setNewActivity(false);
+        setEditForm({...editForm, name: "", description: ""})
       })
   }
 
   return (
-    <Grid item xs={12} sm={10} md={4}>
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
-        {/* <CardHeader
-          avatar={<Checkbox checked={checked} onChange={handleCheck} sx={{ px: "0px" }} />}
-          title={<Typography variant="h6">activity name</Typography>}
-          action={
-            <Box>
-              <IconButton size="small" aria-label="edit" onClick={handleEdit}>
-                <ModeEditOutlineOutlinedIcon />
-              </IconButton>
-              <IconButton size="small" aria-label="edit" onClick={handleDelete}>
-                <DeleteOutlinedIcon />
-              </IconButton>
-            </Box>
-          }
-          sx={{ paddingBottom: "0px" }}
-        /> */}
         <CardContent
           sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
         >
@@ -110,7 +97,6 @@ function NewActivity({currentUser, activities, setActivities, setNewActivity}) {
           </Box>
         </CardContent>
       </Card>
-    </Grid>
   );
 }
 
