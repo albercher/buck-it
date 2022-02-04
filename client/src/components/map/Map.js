@@ -48,7 +48,7 @@ function Map({ pins, setPins, currentUser }) {
       place_name: result.place_name,
       latitude: result.geometry.coordinates[1],
       longitude: result.geometry.coordinates[0],
-      user_id: currentUser.id,
+      user_id: currentUser,
     };
     fetch("/pins", {
       method: "POST",
