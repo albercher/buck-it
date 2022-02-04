@@ -10,14 +10,14 @@ function SortBuckits({ pins, setPins }) {
     let sorted = [];
     if(e === "Name"){
       sorted = pins.sort((a,b) => {
-        if(a.name < b.name) { return -1; }
-        if(a.name > b.name) { return 1; }
+        if(a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
+        if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
         return 0;
       })
     } else if(e === "Place"){
       sorted = pins.sort((a,b) => {
-        if(a.place_name < b.place_name) { return -1; }
-        if(a.place_name > b.place_name) { return 1; }
+        if(a.place_name.toLowerCase() < b.place_name.toLowerCase()) { return -1; }
+        if(a.place_name.toLowerCase() > b.place_name.toLowerCase()) { return 1; }
         return 0;
       })
     }

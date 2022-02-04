@@ -1,7 +1,7 @@
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 
-import SortChip from "./SortChip";
+import SortChip from "./SortChipAct";
 
 function SortActivities({ activities, setActivities }) {
   const sortMethods = ["Name", "Completed"];
@@ -10,16 +10,15 @@ function SortActivities({ activities, setActivities }) {
     let sorted = [];
     if(e === "Name"){
       sorted = activities.sort((a,b) => {
-        if(a.name < b.name) { return -1; }
-        if(a.name > b.name) { return 1; }
+        if(a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
+        if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
         return 0;
       })
+      
     } else if(e === "Completed"){
-      sorted = activities.sort((a,b) => {
-        return (a === b)? 0 : a? -1 : 1;
-      })
+      sorted = activities.sort((a,b) => a.completed - b.completed);
     }
-    setActivities([...sorted])
+    setActivities([...sorted]);
   };
 
   return (
