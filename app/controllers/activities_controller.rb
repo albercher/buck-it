@@ -34,7 +34,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    act = Act.find_by_id(params[:id])
+    act = Activity.find_by_id(params[:id])
 
     if act
       act.destroy

@@ -5,7 +5,7 @@ import Collapse from "@mui/material/Collapse";
 import Activity from "./Activity";
 import ActivityHeading from "./head/ActivityHeading";
 import NewActivity from "./NewActivity";
-import Zoom from '@mui/material/Zoom';
+import Zoom from "@mui/material/Zoom";
 
 import { useState } from "react";
 
@@ -22,17 +22,16 @@ function MyActivities({ activities, setActivities, currentUser }) {
       />
       {/* {newActivity ? <NewActivity /> : null} */}
       <Grid container spacing={1} justifyContent={"center"} sx={{ px: "15px" }}>
-        
         <Grid item xs={12} sm={10} md={4}>
-<Collapse in={newActivity}>
-        <NewActivity
-                currentUser={currentUser}
-                setActivities={setActivities}
-                activities={activities}
-                setNewActivity={setNewActivity}
-              />
-              
-        </Collapse></Grid>
+          <Collapse in={newActivity}>
+            <NewActivity
+              currentUser={currentUser}
+              setActivities={setActivities}
+              activities={activities}
+              setNewActivity={setNewActivity}
+            />
+          </Collapse>
+        </Grid>
         {/* {newActivity ? (
               <NewActivity
                 setNewActivity={setNewActivity}
@@ -41,8 +40,8 @@ function MyActivities({ activities, setActivities, currentUser }) {
                 activities={activities}
                 newActivity={newActivity}
               />) : null} */}
-        {activities.map((activity, key) => (
-          <Activity key={key} activity={activity} />
+        {activities.map((activity, index) => (
+          <Activity key={index} index={index} activity={activity} activities={activities} setActivities={setActivities} />
         ))}
       </Grid>
     </Box>

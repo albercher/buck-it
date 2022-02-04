@@ -15,16 +15,15 @@ import Checkbox from "@mui/material/Checkbox";
 
 import { useState } from "react";
 
-function Activity({activity}) {
+function Activity({ activity, activities, setActivities, index }) {
+  const [checked, setChecked] = useState(activity.completed);
+
   const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
   const [editForm, setEditForm] = useState({
-    name: "",
-    description: "",
+    name: activity.name,
+    description: activity.description,
+    // completed: activity.completed,
   });
-
-  // needs to be activity.completed when backend configured
-  // TODO: fetch req for updating form and checkbox. might be able to combine
-  const [checked, setChecked] = useState(false);
 
   // show or hide form
   function handleEdit() {
@@ -32,15 +31,15 @@ function Activity({activity}) {
   }
 
   function handleDelete() {
-    // fetch("/pins/" + info.id, {
-    //   method: "DELETE",
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     let filteredArray = pins.filter(pin => pin.id !== info.id);
-    //     setPins(filteredArray);
-    //   });
+    fetch("/activities/" + activity.id, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        let filteredArray = activities.filter((act) => act.id !== activity.id);
+        setActivities(filteredArray);
+      });
   }
 
   function handleChange(e) {
@@ -54,36 +53,62 @@ function Activity({activity}) {
     e.preventDefault();
 
     // update on backend
-    // fetch("/pins/" + info.id, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(editForm),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    //     // close the form
-    //     setEditInfo(!editInfo);
+    fetch("/activities/" + activity.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editForm),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        // close the form
+        setEditInfo(!editInfo);
 
-    //     // update pins array with updated pins
-    //     let newArr = [...pins];
-    //     newArr[index] = data;
+        // update act array with updated act
+        let newArr = [...activities];
+        newArr[index] = data;
 
-    //     setPins(newArr);
-    //   });
+        setActivities(newArr);
+      });
   }
 
-  function handleCheck(e){
-      setChecked(e.target.checked);
-  };
+  function handleCheck(e) {
+    setChecked(e.target.checked);
+
+    const currentCheck = { completed: e.target.checked };
+    // update on backend
+    fetch("/activities/" + activity.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(currentCheck),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("Success:", data);
+
+        // update act array with updated act
+        let newArr = [...activities];
+        newArr[index] = data;
+
+        setActivities(newArr);
+      });
+  }
 
   return (
     <Grid item xs={12} sm={10} md={4}>
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
         <CardHeader
-          avatar={<Checkbox checked={checked} onChange={handleCheck} sx={{ px: "0px" }} />}
+          avatar={
+            <Checkbox
+              checked={checked}
+              onChange={handleCheck}
+              sx={{ px: "0px" }}
+            />
+          }
           title={<Typography variant="h6">{activity.name}</Typography>}
           action={
             <Box>
@@ -131,7 +156,7 @@ function Activity({activity}) {
                     multiline
                   />
                 </Grid>
-                <Grid item xs={12} sx={{ marginTop: "10px"}}>
+                <Grid item xs={12} sx={{ marginTop: "10px" }}>
                   <Button
                     type="submit"
                     variant="contained"
