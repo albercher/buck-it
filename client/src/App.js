@@ -54,7 +54,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(0);
   const [pins, setPins] = useState([]);
   const [activities, setActivities] = useState([]);
 
@@ -62,17 +62,10 @@ function App() {
     fetch("/me").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          console.log(user)
-          const userid = user.id
-          setCurrentUser(user);
+          setCurrentUser(user.id);
           setPins(user.pins);
           setActivities(user.activities);
-          // return fetch("/users/" + userid + "/pins")
         })
-        // .then(response => response.json()).then(data => {
-        //   console.log(data)
-        //   setPins(data)
-        // })
       }
     });
   }, []);
