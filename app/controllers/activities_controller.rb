@@ -1,14 +1,7 @@
 class ActivitiesController < ApplicationController
-  # def create
-  #   act =
-  #     Activity.create(activities_params)
-  #   if act.valid?
-  #     render json: act, status: :created
-  #   else
-  #     render json: act.errors.full_messages, status: :unprocessable_entity
-  #   end
-  # end
-
+  def index
+    render json: Activity.all
+  end
 
   def create
     act = Activity.create(activities_params)

@@ -1,13 +1,7 @@
 class PinsController < ApplicationController
-  # def index
-  #   if current_user
-  #     pins = current_user.pins
-  #     render json: pins
-  #   else
-  #     render json: {error: "Pins not found"}, status: :not_found
-  #   end
-    
-  # end
+  def index
+    render json: Pin.all
+  end
 
   def create
     pin = Pin.create(
