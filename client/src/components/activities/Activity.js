@@ -104,7 +104,7 @@ function Activity({ activity, activities, setActivities, index }) {
         <CardHeader
           avatar={
             <Checkbox
-              checked={checked}
+              checked={activity.completed}
               onChange={handleCheck}
               sx={{ px: "0px" }}
             />

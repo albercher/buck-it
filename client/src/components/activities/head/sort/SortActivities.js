@@ -19,6 +19,8 @@ function SortActivities({ activities, setActivities }) {
       sorted = activities.sort((a,b) => a.completed - b.completed);
     }
     setActivities([...sorted]);
+    console.log(sorted)
+    console.log(activities)
   };
 
   return (
