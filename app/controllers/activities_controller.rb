@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    render json: Activity.all
+    render json: Activity.all.limit(9)
   end
 
   def create

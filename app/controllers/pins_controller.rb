@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
   def index
-    render json: Pin.all
+    render json: Pin.all.limit(9)
   end
 
   def create
