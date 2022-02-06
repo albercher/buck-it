@@ -51,7 +51,7 @@ function RecentPin( { info } ){
           </Grid>
         </CardContent>
       </Card>
-    </Grid>
+</Grid>
   );
 }
 

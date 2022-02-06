@@ -59,6 +59,8 @@ function App() {
   const [pins, setPins] = useState([]);
   const [activities, setActivities] = useState([]);
   const [publicPins, setPublicPins] = useState([]);
+  const [publicActivities, setPublicActivities] = useState([]);
+
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -76,6 +78,12 @@ function App() {
     fetch('/pins')
     .then(response => response.json())
     .then(data => setPublicPins(data));
+  }, []);
+
+  useEffect(() => {
+    fetch('/activities')
+    .then(response => response.json())
+    .then(data => setPublicActivities(data));
   }, []);
 
   return (
@@ -107,7 +115,7 @@ function App() {
             />
              <Route
               path="/"
-              element={<Explore publicPins={publicPins} />}
+              element={<Explore publicPins={publicPins} publicActivities={publicActivities} />}
             />
           </Route>
           <Route
