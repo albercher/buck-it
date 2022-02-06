@@ -7,6 +7,7 @@ import Navigation from "./components/nav/Navigation";
 import Map from "./components/map/Map";
 import MyBuckits from "./components/buckits/MyBuckits";
 import MyActivities from "./components/activities/MyActivities";
+import Explore from "./components/explore/Explore";
 
 import "./App.css";
 
@@ -57,6 +58,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(0);
   const [pins, setPins] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [publicPins, setPublicPins] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -68,6 +70,12 @@ function App() {
         })
       }
     });
+  }, []);
+
+  useEffect(() => {
+    fetch('/pins')
+    .then(response => response.json())
+    .then(data => setPublicPins(data));
   }, []);
 
   return (
@@ -96,6 +104,10 @@ function App() {
             <Route
               path="myactivities"
               element={<MyActivities activities={activities} setActivities={setActivities} currentUser={currentUser} />}
+            />
+             <Route
+              path="/"
+              element={<Explore publicPins={publicPins} />}
             />
           </Route>
           <Route
