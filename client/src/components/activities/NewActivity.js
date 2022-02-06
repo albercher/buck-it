@@ -19,7 +19,6 @@ function NewActivity({currentUser, activities, setActivities, setNewActivity, ne
   const [editForm, setEditForm] = useState({
     name: "",
     description: "",
-    user_id: currentUser.id
   });
 
   function handleChange(e) {
@@ -28,16 +27,19 @@ function NewActivity({currentUser, activities, setActivities, setNewActivity, ne
       [e.target.name]: e.target.value,
     });
   }
-
   function handleSave(e) {
     e.preventDefault();
+
+    const newActData = {
+      ...editForm, user_id: currentUser
+    }
 
     fetch('/activities', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(editForm),
+        body: JSON.stringify(newActData),
       })
       .then(response => response.json())
       .then(data => {
