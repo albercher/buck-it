@@ -9,9 +9,8 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Collapse from "@mui/material/Collapse";
 
 import { useState } from "react";
 
@@ -22,7 +21,6 @@ function Activity({ activity, activities, setActivities, index }) {
   const [editForm, setEditForm] = useState({
     name: activity.name,
     description: activity.description,
-    // completed: activity.completed,
   });
 
   // show or hide form
@@ -99,8 +97,8 @@ function Activity({ activity, activities, setActivities, index }) {
   }
 
   return (
-    <Grid item xs={12} sm={10} md={4}>
-      <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
+    <Grid item xs={12} sm={10} md={6} >
+      <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
         <CardHeader
           avatar={
             <Checkbox

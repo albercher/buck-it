@@ -9,7 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 function RecentActivity( {info} ){
     return (
         <Grid item xs={12} sm={10} md={4}>
-        <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
+        <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
           <CardHeader
             avatar={
               <Checkbox

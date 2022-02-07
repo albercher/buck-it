@@ -85,7 +85,7 @@ function Buckit({ info, setPins, pins, index }) {
 
   return (
     <Grid item xs={12} sm={10} md={4}>
-      <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
+      <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
         {/* height 100% for card */}
         <CardHeader
           action={
