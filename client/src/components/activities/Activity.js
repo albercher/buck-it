@@ -34,7 +34,6 @@ function Activity({ activity, activities, setActivities, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         let filteredArray = activities.filter((act) => act.id !== activity.id);
         setActivities(filteredArray);
       });
@@ -60,7 +59,6 @@ function Activity({ activity, activities, setActivities, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         // close the form
         setEditInfo(!editInfo);
 
@@ -86,8 +84,6 @@ function Activity({ activity, activities, setActivities, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
-
         // update act array with updated act
         let newArr = [...activities];
         newArr[index] = data;

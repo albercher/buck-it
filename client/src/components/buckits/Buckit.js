@@ -31,7 +31,6 @@ function Buckit({ info, setPins, pins, index }) {
     });
     // setHexColor({ hex: color.hex });
   }
-  // console.log(editForm)
 
   function handleSave(e) {
     e.preventDefault();
@@ -46,7 +45,6 @@ function Buckit({ info, setPins, pins, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         // close the form
         setEditInfo(!editInfo);
 
@@ -59,7 +57,6 @@ function Buckit({ info, setPins, pins, index }) {
   }
 
   function handleColorChange(color, e) {
-    // console.log(color.hex);
     setEditForm({
       ...editForm,
       color: color.hex,
@@ -77,7 +74,6 @@ function Buckit({ info, setPins, pins, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         let filteredArray = pins.filter(pin => pin.id !== info.id);
         setPins(filteredArray);
       });

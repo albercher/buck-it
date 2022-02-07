@@ -59,7 +59,6 @@ function Map({ pins, setPins, currentUser }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         setPins([...pins, data]);
         setPopupInfo(data);
       });

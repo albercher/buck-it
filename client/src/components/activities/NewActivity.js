@@ -36,7 +36,6 @@ function NewActivity({currentUser, activities, setActivities, setNewActivity, ne
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
         setActivities([data, ...activities]);
         setNewActivity(false);
         setEditForm({...editForm, name: "", description: ""})

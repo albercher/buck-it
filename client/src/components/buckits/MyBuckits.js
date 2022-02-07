@@ -8,32 +8,6 @@ import { useState } from "react";
 
 function MyBuckits({ pins, setPins }) {
 
-  // const [sort, setSort] = useState("");
-  // function handleSort(e){
-  //   // console.log(e);
-  //   // setSort(e);
-  //   if(e === "Name"){
-  //     // console.log("set to name")
-  //     let sorted = pins.sort((a,b) => {
-  //       if(a.name < b.name) { return -1; }
-  //       if(a.name > b.name) { return 1; }
-  //       return 0;
-  //     })
-  //     setPins(sorted)
-
-  //   } else if(e === "Place"){
-  //     // console.log("set to place")
-  //     let sorted = pins.sort((a,b) => {
-  //       if(a.place_name < b.place_name) { return -1; }
-  //       if(a.place_name > b.place_name) { return 1; }
-  //       return 0;
-  //     })
-  //     setPins(sorted)
-  //   }
-  //   // console.log(sorted)
-  //   // setPins(sort)
-  // };
-
   return (
     <Box sx={{ marginTop: "60px"}}>
       <SortBuckits pins={pins} setPins={setPins} />
