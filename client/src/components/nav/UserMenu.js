@@ -9,9 +9,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 function UserMenu({ currentUser, setCurrentUser }) {
+  let navigate = useNavigate();
+
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -25,7 +27,8 @@ function UserMenu({ currentUser, setCurrentUser }) {
   const handleLogout = () => {
     fetch("/logout", { method: "DELETE" }).then((res) => {
       if (res.ok) {
-        setCurrentUser(null);
+        setCurrentUser(0);
+        navigate("/signin");
       }
     });
   };
@@ -53,10 +56,12 @@ function UserMenu({ currentUser, setCurrentUser }) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-          <MenuItem onClick={handleLogout}>
-            <ListItemIcon fontSize="small"><Logout /></ListItemIcon>
-            <Typography textAlign="center">Logout</Typography>
-          </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon fontSize="small">
+            <Logout />
+          </ListItemIcon>
+          <Typography textAlign="center">Logout</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

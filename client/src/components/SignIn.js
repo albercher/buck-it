@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
-function SignIn({ setCurrentUser }) {
+function SignIn({ setCurrentUser, setActivities, setPins }) {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -38,7 +38,9 @@ function SignIn({ setCurrentUser }) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
+          setCurrentUser(user.id);
+          setPins(user.pins);
+          setActivities(user.activities);
           navigate("/");
         });
       } else {
@@ -123,9 +125,7 @@ function SignIn({ setCurrentUser }) {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-
-              </Grid>
+              <Grid item xs></Grid>
               <Grid item>
                 <Link to={"/signup"}>{"Don't have an account? Sign Up"}</Link>
               </Grid>

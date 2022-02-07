@@ -12,7 +12,7 @@ import { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-function SignUp( { setCurrentUser } ) {
+function SignUp({ setCurrentUser, setActivities, setPins }) {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -42,7 +42,9 @@ function SignUp( { setCurrentUser } ) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((user) => {
-          setCurrentUser(user);
+          setCurrentUser(user.id);
+          setPins(user.pins);
+          setActivities(user.activities);
           navigate("/");
         });
       } else {

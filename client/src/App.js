@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/nav/Navigation";
@@ -8,6 +8,9 @@ import Map from "./components/map/Map";
 import MyBuckits from "./components/buckits/MyBuckits";
 import MyActivities from "./components/activities/MyActivities";
 import Explore from "./components/explore/Explore";
+
+import RequireAuth from "./components/utils/RequireAuth";
+import CheckAuth from "./components/utils/CheckAuth";
 
 import "./App.css";
 
@@ -61,29 +64,28 @@ function App() {
   const [publicPins, setPublicPins] = useState([]);
   const [publicActivities, setPublicActivities] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("/me").then((res) => {
+  //     if (res.ok) {
+  //       res.json().then((user) => {
+  //         setCurrentUser(user.id);
+  //         setPins(user.pins);
+  //         setActivities(user.activities);
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
-    fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          setCurrentUser(user.id);
-          setPins(user.pins);
-          setActivities(user.activities);
-        })
-      }
-    });
+    fetch("/pins")
+      .then((response) => response.json())
+      .then((data) => setPublicPins(data));
   }, []);
 
   useEffect(() => {
-    fetch('/pins')
-    .then(response => response.json())
-    .then(data => setPublicPins(data));
-  }, []);
-
-  useEffect(() => {
-    fetch('/activities')
-    .then(response => response.json())
-    .then(data => setPublicActivities(data));
+    fetch("/activities")
+      .then((response) => response.json())
+      .then((data) => setPublicActivities(data));
   }, []);
 
   return (
@@ -93,10 +95,17 @@ function App() {
           <Route
             path="/"
             element={
-              <Navigation
+              <RequireAuth
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
-              />
+                setActivities={setActivities}
+                setPins={setPins}
+              >
+                <Navigation
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              </RequireAuth>
             }
           >
             <Route
@@ -111,20 +120,57 @@ function App() {
             />
             <Route
               path="myactivities"
-              element={<MyActivities activities={activities} setActivities={setActivities} currentUser={currentUser} />}
+              element={
+                <MyActivities
+                  activities={activities}
+                  setActivities={setActivities}
+                  currentUser={currentUser}
+                />
+              }
             />
-             <Route
-              path="/"
-              element={<Explore publicPins={publicPins} publicActivities={publicActivities} />}
+            <Route
+              index
+              element={
+                <Explore
+                  publicPins={publicPins}
+                  publicActivities={publicActivities}
+                />
+              }
             />
           </Route>
           <Route
             path="/signin"
-            element={<SignIn setCurrentUser={setCurrentUser} />}
+            element={
+              <CheckAuth
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                setActivities={setActivities}
+                setPins={setPins}
+              >
+                <SignIn
+                  setActivities={setActivities}
+                  setPins={setPins}
+                  setCurrentUser={setCurrentUser}
+                />{" "}
+              </CheckAuth>
+            }
           />
           <Route
             path="/signup"
-            element={<SignUp setCurrentUser={setCurrentUser} />}
+            element={
+              <CheckAuth
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                setActivities={setActivities}
+                setPins={setPins}
+              >
+                <SignUp
+                  setActivities={setActivities}
+                  setPins={setPins}
+                  setCurrentUser={setCurrentUser}
+                />
+              </CheckAuth>
+            }
           />
         </Routes>
       </BrowserRouter>
