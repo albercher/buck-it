@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/nav/Navigation";
