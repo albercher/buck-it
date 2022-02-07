@@ -27,6 +27,7 @@ function RecentPin( { info } ){
               </Typography>
             </Grid>
           }
+          action={<Typography variant="body2" sx={{ paddingRight:"10px" }}>by {info.user.display_name}</Typography>}
           sx={{ paddingBottom: "5px" }}
         />
         <CardContent

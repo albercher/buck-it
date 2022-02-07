@@ -19,7 +19,7 @@ function RecentActivity( {info} ){
               />
             }
             title={<Typography variant="h6">{info.name}</Typography>}
-
+            action={<Typography variant="body2" sx={{ paddingRight:"10px" }}>by {info.user.display_name}</Typography>}
             sx={{ paddingBottom: "0px" }}
           />
           <CardContent
