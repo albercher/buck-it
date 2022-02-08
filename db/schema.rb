@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_02_03_153733) do
   end
 
   create_table "pins", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: "Untitled Buckit"
     t.text "description"
     t.string "color", default: "#CC2936"
     t.string "place_name"
