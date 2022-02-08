@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/nav/Navigation";
-import Map from "./components/map/Map";
+import MyMap from "./components/map/MyMap";
 import MyBuckits from "./components/buckits/MyBuckits";
 import MyActivities from "./components/activities/MyActivities";
 import Explore from "./components/explore/Explore";
@@ -111,7 +111,7 @@ function App() {
             <Route
               path="map"
               element={
-                <Map pins={pins} setPins={setPins} currentUser={currentUser} />
+                <MyMap pins={pins} setPins={setPins} currentUser={currentUser} />
               }
             />
             <Route

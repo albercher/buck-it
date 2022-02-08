@@ -1,17 +1,17 @@
 import { useState, useCallback, useRef } from "react";
-import MapGL, {
+import Map, {
   Popup,
   NavigationControl,
   FullscreenControl,
 } from "react-map-gl";
-import Geocoder from "react-map-gl-geocoder";
+// import Geocoder from "react-map-gl-geocoder";
 
 import Pin from "./Pin";
 import PinInfo from "./PinInfo";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY;
 
-function Map({ pins, setPins, currentUser }) {
+function MyMap({ pins, setPins, currentUser }) {
   const [viewport, setViewport] = useState({
     longitude: 10,
     latitude: 90,
@@ -26,10 +26,10 @@ function Map({ pins, setPins, currentUser }) {
   // Returns memoized callback (for optimization),stores results of expensive function calls
   // ? not sure why this is "expensive", would like to research more
   // from docs: will return a memoized version of the callback that only changes if one of the dependencies has changed
-  const handleViewportChange = useCallback(
-    (newViewport) => setViewport(newViewport),
-    []
-  );
+  // const handleViewportChange = useCallback(
+  //   (newViewport) => setViewport(newViewport),
+  //   []
+  // );
 
   const fullscreenControlStyle = {
     top: 70,
@@ -65,16 +65,19 @@ function Map({ pins, setPins, currentUser }) {
   }
 
   return (
-    <MapGL
+    <Map
       {...viewport}
       ref={mapRef}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
-      width="100%"
-      height="100vh"
-      onViewportChange={handleViewportChange}
-      mapboxApiAccessToken={MAPBOX_TOKEN}
+      mapStyle="mapbox://styles/mapbox/light-v9"
+      style={{ width: "100%", height: "100vh"}}
+      // width="100%"
+      // height="100vh"
+      // onViewportChange={handleViewportChange}
+      mapboxAccessToken={MAPBOX_TOKEN}
+      onMove={evt => setViewport(evt.viewState)}
+
     >
-      <Geocoder
+      {/* <Geocoder
         mapRef={mapRef}
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
@@ -82,13 +85,15 @@ function Map({ pins, setPins, currentUser }) {
         onResult={(result) => {
           handleAddPin(result.result);
         }}
-      />
+      /> */}
 
       <FullscreenControl style={fullscreenControlStyle} />
       <NavigationControl style={navStyle} />
 
-      <Pin data={pins} onClick={setPopupInfo} />
-      {popupInfo && (
+      <Pin data={pins} 
+      // onClick={setPopupInfo} 
+      />
+      {/* {popupInfo && (
         <Popup
           tipSize={5}
           anchor="top"
@@ -100,9 +105,9 @@ function Map({ pins, setPins, currentUser }) {
         >
           <PinInfo info={popupInfo} />
         </Popup>
-      )}
-    </MapGL>
+      )} */}
+    </Map>
   );
 }
 
-export default Map;
+export default MyMap;
