@@ -5,15 +5,16 @@ import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import List from "@mui/material/List";
+
+import BuckitPin from "./BuckitPin";
 
 import { useState } from "react";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
 
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-
-
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 function NewBuckit({ setPins, pins, apiKey }) {
   //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
@@ -34,7 +35,6 @@ function NewBuckit({ setPins, pins, apiKey }) {
 
   function handleSave(e) {
     // e.preventDefault();
-
     // // update on backend
     // fetch("/pins/" + info.id, {
     //   method: "PATCH",
@@ -47,11 +47,9 @@ function NewBuckit({ setPins, pins, apiKey }) {
     //   .then((data) => {
     //     // close the form
     //     setEditInfo(!editInfo);
-
     //     // update pins array with updated pins
     //     let newArr = [...pins];
     //     newArr[index] = data;
-
     //     setPins(newArr);
     //   });
   }
@@ -63,119 +61,113 @@ function NewBuckit({ setPins, pins, apiKey }) {
     });
   }
 
-
-//   function handleDelete() {
-//     fetch("/pins/" + info.id, {
-//       method: "DELETE",
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         let filteredArray = pins.filter(pin => pin.id !== info.id);
-//         setPins(filteredArray);
-//       });
-//   }
-
   return (
     // <Grid item xs={12} sm={10} md={4}>
-      <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
-        <CardContent
-          sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
+    <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
+      <CardContent
+        sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
+      >
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSave}
         >
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-              onSubmit={handleSave}
-            >
-              <Grid container>
-                <Grid item xs={12}>
-                  <TextField
-                    name="name"
-                    id="standard-basic"
-                    fullWidth
-                    label="Name"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={newForm.name || ""}
-                  />
-                </Grid>
-                <Grid item xs={12} sx={{ marginTop: "15px" }}>
-                  <TextField
-                    name="description"
-                    id="standard-basic"
-                    label="Description"
-                    variant="standard"
-                    fullWidth
-                    onChange={handleChange}
-                    value={newForm.description || ""}
-                    multiline
-                  />
-                </Grid>
-                <Grid item xs={12} sx={{ marginTop: "15px" }}>
-                <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
-                    Add stops
-                  </Typography>
-                  <GooglePlacesAutocomplete apiKey="AIzaSyC2zK2fEpFe4_0y8fh_XTIyqOA0BNj0utE" />
+          <Grid container>
+            <Grid item xs={12}>
+              <TextField
+                name="name"
+                id="standard-basic"
+                fullWidth
+                label="Name"
+                variant="standard"
+                onChange={handleChange}
+                value={newForm.name || ""}
+              />
+            </Grid>
+            <Grid item xs={12} sx={{ marginTop: "15px" }}>
+              <TextField
+                name="description"
+                id="standard-basic"
+                label="Description"
+                variant="standard"
+                fullWidth
+                onChange={handleChange}
+                value={newForm.description || ""}
+                multiline
+              />
+            </Grid>
 
-                </Grid>
-                <Grid item xs={12} sx={{ marginTop: "15px" }}>
-                  <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
-                    Pin Color
-                  </Typography>
-                  <TwitterPicker
-                    // width="100%"
-                    colors={['#cc2936', "#f9AA33","#ffdc14", "#0e6325", "#1e609e", "#714b94", "#c774cf" ]}
-                    color={newForm.color}
-                    onChange={handleColorChange}
-                    triangle="hide"
-                    styles={{
-                      default: {
-                        card: {
-                          boxShadow: "none",
-                        },
-                        body: {
-                          padding: "4px 0px 0px 0px",
-                        },
-                        // input: {
-                        //   width: "20%"
-                        // },
-                        // hash: {
-                        //   width: "10%"
-                        // },
-                        // swatch: {
-                        //   width: "10%"
-                        // },
-                      },
-                    }}
-                  />
-                </Grid>
+            <Grid item xs={12} sx={{ marginTop: "15px" }}>
+              <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
+                Stops
+              </Typography>
+              <List>
+                {/* map buckit pins here */}
+                <BuckitPin />
+              </List>
+            </Grid>
 
-                <Grid item xs={12} sx={{ marginTop: "10px"}}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disableElevation
-                    sx={{ my: "10px" }}
-                  >
-                    Save
-                  </Button>
-                </Grid>
+            <Grid item xs={12} sx={{ marginTop: "15px" }}>
+              <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
+                Add stops
+              </Typography>
+              <GooglePlacesAutocomplete apiKey="AIzaSyC2zK2fEpFe4_0y8fh_XTIyqOA0BNj0utE" />
+            </Grid>
+            <Grid item xs={12} sx={{ marginTop: "15px" }}>
+              <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
+                Pin Color
+              </Typography>
+              <TwitterPicker
+                // width="100%"
+                colors={[
+                  "#cc2936",
+                  "#f9AA33",
+                  "#ffdc14",
+                  "#0e6325",
+                  "#1e609e",
+                  "#714b94",
+                  "#c774cf",
+                ]}
+                color={newForm.color}
+                onChange={handleColorChange}
+                triangle="hide"
+                styles={{
+                  default: {
+                    card: {
+                      boxShadow: "none",
+                    },
+                    body: {
+                      padding: "4px 0px 0px 0px",
+                    },
+                    // input: {
+                    //   width: "20%"
+                    // },
+                    // hash: {
+                    //   width: "10%"
+                    // },
+                    // swatch: {
+                    //   width: "10%"
+                    // },
+                  },
+                }}
+              />
+            </Grid>
 
-                {/* <Grid item xs={6}>
-                  <Typography variant="body2" color="#6d6d6d">
-                    {new.place_name}
-                  </Typography>
-                </Grid>
-                <Grid item xs={6} align="right">
-                  <Typography variant="overline" color="#6d6d6d">
-                    {info.latitude}, {info.longitude}
-                  </Typography>
-                </Grid> */}
-              </Grid>
-            </Box>
-          
-        </CardContent>
-      </Card>
+            <Grid item xs={12} sx={{ marginTop: "10px" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                disableElevation
+                sx={{ my: "10px" }}
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+    </Card>
     // </Grid>
   );
 }
