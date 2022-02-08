@@ -116,7 +116,7 @@ function App() {
             />
             <Route
               path="mybuckits"
-              element={<MyBuckits pins={pins} setPins={setPins} />}
+              element={<MyBuckits pins={pins} setPins={setPins} currentUser={currentUser} />}
             />
             <Route
               path="myactivities"
