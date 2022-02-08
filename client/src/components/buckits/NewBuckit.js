@@ -2,19 +2,20 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import CardContent from "@mui/material/CardContent";
-import CardHeader from "@mui/material/CardHeader";
-import IconButton from "@mui/material/IconButton";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+
 import { useState } from "react";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
 
-function NewBuckit({ setPins, pins }) {
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+
+
+
+function NewBuckit({ setPins, pins, apiKey }) {
   //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
   const [newForm, setNewForm] = useState({
     // name: info.name,
@@ -114,6 +115,8 @@ function NewBuckit({ setPins, pins }) {
                 <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
                     Add stops
                   </Typography>
+                  <GooglePlacesAutocomplete apiKey="AIzaSyC2zK2fEpFe4_0y8fh_XTIyqOA0BNj0utE" />
+
                 </Grid>
                 <Grid item xs={12} sx={{ marginTop: "15px" }}>
                   <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">

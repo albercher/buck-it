@@ -9,6 +9,9 @@ import NewBuckit from "./NewBuckit";
 
 import { useState } from "react";
 
+const GEOCODE_KEY = process.env.REACT_APP_GEOCODE_API_KEY;
+
+
 function MyBuckits({ pins, setPins, currentUser }) {
   const [newBuckit, setNewBuckit] = useState(false);
 
@@ -29,6 +32,7 @@ function MyBuckits({ pins, setPins, currentUser }) {
               setPins={setPins}
               pins={pins}
               setNewBuckit={setNewBuckit}
+              apiKey={GEOCODE_KEY}
             />
           </Collapse>
         </Grid>
