@@ -38,6 +38,6 @@ class BuckitsController < ApplicationController
     private
 
     def buckit_params
-        params.permit(:name, :description, :color)
+        params.require(:buckit).permit(:name, :description, :color, pins_attributes: [ :id, :place_name, :longitude, :latitude, :order_number, :place_id ])
     end
 end

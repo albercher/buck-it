@@ -1,16 +1,16 @@
 class PinsController < ApplicationController
   # def index
-  #   render json: Pin.order("updated_at DESC").limit(9)
+  #   render json: Pin.all
   # end
 
-  def create
-    pin = Pin.create(pin_params)
-    if pin.valid?
-        render json: pin, status: :created
-    else
-        render json: pin.errors.full_messages, status: :unprocessable_entity
-    end
-  end
+  # def create
+  #   pin = Pin.create(pin_params)
+  #   if pin.valid?
+  #       render json: pin, status: :created
+  #   else
+  #       render json: pin.errors.full_messages, status: :unprocessable_entity
+  #   end
+  # end
 
   # def update
   #   pin = Pin.find_by_id(params[:id])
@@ -26,16 +26,16 @@ class PinsController < ApplicationController
   #   end
   # end
 
-  def destroy
-    pin = Pin.find_by_id(params[:id])
+  # def destroy
+  #   pin = Pin.find_by_id(params[:id])
 
-    if pin
-      pin.destroy
-      render json: {}
-    else
-      render json: {error: "Pin not found"}, status: :not_found
-    end
-  end
+  #   if pin
+  #     pin.destroy
+  #     render json: {}
+  #   else
+  #     render json: {error: "Pin not found"}, status: :not_found
+  #   end
+  # end
 
   private
 

@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { TwitterPicker } from "react-color";
 
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { geocodeByPlaceId, getLatLng } from "react-google-places-autocomplete";
 
 function NewBuckit({ setBuckits, buckits, setNewBuckit }) {
   const [newForm, setNewForm] = useState({
@@ -38,12 +39,17 @@ function NewBuckit({ setBuckits, buckits, setNewBuckit }) {
   function handleSave(e) {
     e.preventDefault();
 
+    let newBuckitData = {
+      ...newForm,
+      pins_attributes: [...stops],
+    };
+
     fetch("/buckits", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newForm),
+      body: JSON.stringify(newBuckitData),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -62,11 +68,27 @@ function NewBuckit({ setBuckits, buckits, setNewBuckit }) {
   // whenever our stop value is set, add it to our stops and clear our stop
   useEffect(() => {
     if (stop) {
-      setStops([...stops, stop]);
+      geocodeByPlaceId(stop.value.place_id)
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          let newStopData = {
+            place_name: stop.label,
+            place_id: stop.value.place_id,
+            latitude: lat,
+            longitude: lng,
+            order_number: stops.length,
+          };
+          console.log(newStopData);
+          setStops([...stops, newStopData]);
+        })
+        .catch((error) => console.error(error));
+
+      // setStops([...stops, stop]);
       setStop(null);
     }
-    console.log(stops);
   }, [stop]);
+  // console.log(stop);    
+  // console.log(stops);
 
   return (
     // <Grid item xs={12} sm={10} md={4}>
@@ -110,15 +132,14 @@ function NewBuckit({ setBuckits, buckits, setNewBuckit }) {
                 Stops
               </Typography>
               <List>
-                {stops.map((pin, index) => (
-                  <BuckitPin
+                {stops.map((info, index) => {
+                  return <BuckitPin
                     key={index}
-                    order={index}
-                    pin={pin}
-                    stops={stops}
-                    setStops={setStops}
-                  />
-                ))}
+                    info={info}
+                    // stops={stops}
+                    // setStops={setStops}
+                  />;
+                })}
               </List>
             </Grid>
 

@@ -9,10 +9,14 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import List from "@mui/material/List";
+
 import { useState } from "react";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
+
+import BuckitPin from "./BuckitPin";
 
 function Buckit({ info, setBuckits, buckits, index }) {
   const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
@@ -24,6 +28,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
     //   color: info.color
   });
 
+  console.log(info);
   function handleChange(e) {
     setEditForm({
       ...editForm,
@@ -74,7 +79,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        let filteredArray = buckits.filter(buckit => buckit.id !== info.id);
+        let filteredArray = buckits.filter((buckit) => buckit.id !== info.id);
         setBuckits(filteredArray);
       });
   }
@@ -149,12 +154,37 @@ function Buckit({ info, setBuckits, buckits, index }) {
                   />
                 </Grid>
                 <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                  <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
+                    Stops
+                  </Typography>
+                  <List>
+                    {info.pins.map((info, index) => {
+                      return (
+                        <BuckitPin
+                          key={index}
+                          info={info}
+                          // stops={stops}
+                          // setStops={setStops}
+                        />
+                      );
+                    })}
+                  </List>
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
                   <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
                     Buckit Color
                   </Typography>
                   <TwitterPicker
                     // width="100%"
-                    colors={['#cc2936', "#f9AA33","#ffdc14", "#0e6325", "#1e609e", "#714b94", "#c774cf" ]}
+                    colors={[
+                      "#cc2936",
+                      "#f9AA33",
+                      "#ffdc14",
+                      "#0e6325",
+                      "#1e609e",
+                      "#714b94",
+                      "#c774cf",
+                    ]}
                     color={editForm.color}
                     onChange={handleColorChange}
                     triangle="hide"
@@ -180,7 +210,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
                   />
                 </Grid>
 
-                <Grid item xs={12} sx={{ marginTop: "10px"}}>
+                <Grid item xs={12} sx={{ marginTop: "10px" }}>
                   <Button
                     type="submit"
                     variant="contained"
@@ -191,7 +221,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
                   </Button>
                 </Grid>
 
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <Typography variant="body2" color="#6d6d6d">
                     {info.place_name}
                   </Typography>
@@ -200,7 +230,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
                   <Typography variant="overline" color="#6d6d6d">
                     {info.latitude}, {info.longitude}
                   </Typography>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Box>
           ) : (
@@ -211,7 +241,24 @@ function Buckit({ info, setBuckits, buckits, index }) {
                   <Typography gutterBottom>{info.description}</Typography>
                 </Grid>
               ) : null}
-              <Grid item xs={6}>
+              <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                <Typography variant="body1" >
+                  Stops
+                </Typography>
+                <List>
+                  {info.pins.map((info, index) => {
+                    return (
+                      <BuckitPin
+                        key={index}
+                        info={info}
+                        // stops={stops}
+                        // setStops={setStops}
+                      />
+                    );
+                  })}
+                </List>
+              </Grid>
+              {/* <Grid item xs={6}>
                 <Typography variant="body2" color="#6d6d6d">
                   {info.place_name}
                 </Typography>
@@ -220,7 +267,7 @@ function Buckit({ info, setBuckits, buckits, index }) {
                 <Typography variant="overline" color="#6d6d6d">
                   {info.latitude}, {info.longitude}
                 </Typography>
-              </Grid>
+              </Grid> */}
             </Grid>
           )}
         </CardContent>
