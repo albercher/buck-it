@@ -11,7 +11,7 @@ import PinInfo from "./PinInfo";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY;
 
-function MyMap({ pins, setPins, currentUser }) {
+function MyMap({ buckits, setPins, currentUser }) {
   const [viewport, setViewport] = useState({
     longitude: 10,
     latitude: 90,
@@ -43,26 +43,26 @@ function MyMap({ pins, setPins, currentUser }) {
     padding: "10px",
   };
 
-  function handleAddPin(result) {
-    let newPinData = {
-      place_name: result.place_name,
-      latitude: result.geometry.coordinates[1],
-      longitude: result.geometry.coordinates[0],
-      user_id: currentUser,
-    };
-    fetch("/pins", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPinData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPins([...pins, data]);
-        setPopupInfo(data);
-      });
-  }
+  // function handleAddPin(result) {
+  //   let newPinData = {
+  //     place_name: result.place_name,
+  //     latitude: result.geometry.coordinates[1],
+  //     longitude: result.geometry.coordinates[0],
+  //     user_id: currentUser,
+  //   };
+  //   fetch("/pins", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(newPinData),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setPins([...pins, data]);
+  //       setPopupInfo(data);
+  //     });
+  // }
 
   return (
     <Map
@@ -90,9 +90,10 @@ function MyMap({ pins, setPins, currentUser }) {
       <FullscreenControl style={fullscreenControlStyle} />
       <NavigationControl style={navStyle} />
 
-      <Pin data={pins} 
+      {buckits.map((buckit, index) => <Pin key={index} buckit={buckit} />)}
+      {/* <Pin data={buckits} 
       // onClick={setPopupInfo} 
-      />
+      /> */}
       {/* {popupInfo && (
         <Popup
           tipSize={5}

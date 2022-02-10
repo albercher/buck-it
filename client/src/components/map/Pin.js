@@ -11,13 +11,13 @@ import { memo } from "react";
 // Performance notes: if a large number of markers are needed, it's generally
 // favorable to cache the <Marker> nodes, so that we don't rerender them when
 // the viewport changes.
-function Pin({ data, onClick }) {
-  return data.map((city, index) => (
+function Pin({ buckit, onClick }) {
+  return buckit.pins.map((city, index) => (
     <Marker
       key={`marker-${index}`}
       longitude={city.longitude}
       latitude={city.latitude}
-      color={city.color}
+      color={buckit.color}
       // onClick={() => onClick(city)}
     />
       /* <svg

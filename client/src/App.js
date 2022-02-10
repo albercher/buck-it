@@ -113,7 +113,7 @@ function App() {
             <Route
               path="map"
               element={
-                <MyMap pins={pins} setPins={setPins} currentUser={currentUser} />
+                <MyMap buckits={buckits} currentUser={currentUser} />
               }
             />
             <Route
