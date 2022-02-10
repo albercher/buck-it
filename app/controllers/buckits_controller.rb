@@ -3,6 +3,11 @@ class BuckitsController < ApplicationController
     #     render json: Buckit.order("updated_at DESC").limit(9)
     # end
 
+    def index
+        render json: current_user.buckits.all
+        # render json: User.first.buckits.all
+    end
+
     def show
         buckit = Buckit.find_by_id(params[:id])
         render json: buckit

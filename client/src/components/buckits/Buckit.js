@@ -14,7 +14,7 @@ import { useState } from "react";
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
 
-function Buckit({ info, setPins, pins, index }) {
+function Buckit({ info, setBuckits, buckits, index }) {
   const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
   //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
   const [editForm, setEditForm] = useState({
@@ -36,7 +36,7 @@ function Buckit({ info, setPins, pins, index }) {
     e.preventDefault();
 
     // update on backend
-    fetch("/pins/" + info.id, {
+    fetch("/buckets/" + info.id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -48,11 +48,11 @@ function Buckit({ info, setPins, pins, index }) {
         // close the form
         setEditInfo(!editInfo);
 
-        // update pins array with updated pins
-        let newArr = [...pins];
+        // update buckits array with updated buckits
+        let newArr = [...buckits];
         newArr[index] = data;
 
-        setPins(newArr);
+        setBuckits(newArr);
       });
   }
 
@@ -69,13 +69,13 @@ function Buckit({ info, setPins, pins, index }) {
   }
 
   function handleDelete() {
-    fetch("/pins/" + info.id, {
+    fetch("/buckits/" + info.id, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((data) => {
-        let filteredArray = pins.filter(pin => pin.id !== info.id);
-        setPins(filteredArray);
+        let filteredArray = buckits.filter(buckit => buckit.id !== info.id);
+        setBuckits(filteredArray);
       });
   }
 
@@ -150,7 +150,7 @@ function Buckit({ info, setPins, pins, index }) {
                 </Grid>
                 <Grid item xs={12} sx={{ marginTop: "15px" }}>
                   <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
-                    Pin Color
+                    Buckit Color
                   </Typography>
                   <TwitterPicker
                     // width="100%"

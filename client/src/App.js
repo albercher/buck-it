@@ -63,30 +63,31 @@ function App() {
   const [activities, setActivities] = useState([]);
   const [publicPins, setPublicPins] = useState([]);
   const [publicActivities, setPublicActivities] = useState([]);
+  const [buckits, setBuckits] = useState([]);
+
+    // useEffect(() => {
+    //   fetch("/me").then((res) => {
+    //     if (res.ok) {
+    //       res.json().then((user) => {
+    //         setCurrentUser(user.id);
+    //         setPins(user.pins);
+    //         setActivities(user.activities);
+    //       });
+    //     }
+    //   });
+    // }, []);
 
   // useEffect(() => {
-  //   fetch("/me").then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => {
-  //         setCurrentUser(user.id);
-  //         setPins(user.pins);
-  //         setActivities(user.activities);
-  //       });
-  //     }
-  //   });
+  //   fetch("/pins")
+  //     .then((response) => response.json())
+  //     .then((data) => setPublicPins(data));
   // }, []);
 
-  useEffect(() => {
-    fetch("/pins")
-      .then((response) => response.json())
-      .then((data) => setPublicPins(data));
-  }, []);
-
-  useEffect(() => {
-    fetch("/activities")
-      .then((response) => response.json())
-      .then((data) => setPublicActivities(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/activities")
+  //     .then((response) => response.json())
+  //     .then((data) => setPublicActivities(data));
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,6 +101,7 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 setActivities={setActivities}
                 setPins={setPins}
+                setBuckits={setBuckits}
               >
                 <Navigation
                   currentUser={currentUser}
@@ -116,7 +118,7 @@ function App() {
             />
             <Route
               path="mybuckits"
-              element={<MyBuckits pins={pins} setPins={setPins} currentUser={currentUser} />}
+              element={<MyBuckits buckits={buckits} setBuckits={setBuckits} currentUser={currentUser} />}
             />
             <Route
               path="myactivities"

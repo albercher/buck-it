@@ -12,14 +12,14 @@ import { useState } from "react";
 const GEOCODE_KEY = process.env.REACT_APP_GEOCODE_API_KEY;
 
 
-function MyBuckits({ pins, setPins, currentUser }) {
+function MyBuckits({ buckits, setBuckits, currentUser }) {
   const [newBuckit, setNewBuckit] = useState(false);
 
   return (
     <Box sx={{ marginTop: "60px" }}>
       <BuckitHeading
-        pins={pins}
-        setPins={setPins}
+        buckits={buckits}
+        setBuckits={setBuckits}
         newBuckit={newBuckit}
         setNewBuckit={setNewBuckit}
       />
@@ -29,8 +29,8 @@ function MyBuckits({ pins, setPins, currentUser }) {
           <Collapse in={newBuckit}>
             <NewBuckit
               currentUser={currentUser}
-              setPins={setPins}
-              pins={pins}
+              setBuckits={setBuckits}
+              buckits={buckits}
               setNewBuckit={setNewBuckit}
               apiKey={GEOCODE_KEY}
             />
@@ -38,12 +38,12 @@ function MyBuckits({ pins, setPins, currentUser }) {
         </Grid>
         </Grid>
       <Grid container spacing={1} justifyContent={"center"} sx={{ px: "15px" }}>
-        {pins.map((pin, index) => (
+        {buckits.map((buckit, index) => (
           <Buckit
-            key={pin.id}
-            info={pin}
-            setPins={setPins}
-            pins={pins}
+            key={buckit.id}
+            info={buckit}
+            setBuckits={setBuckits}
+            buckits={buckits}
             index={index}
           />
         ))}

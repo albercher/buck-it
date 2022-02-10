@@ -9,21 +9,23 @@ import List from "@mui/material/List";
 
 import BuckitPin from "./BuckitPin";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
 
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
-function NewBuckit({ setPins, pins, apiKey }) {
-  //   const [hexColor, setHexColor] = useState({hex: "#FF0000"});
+function NewBuckit({ setBuckits, buckits, setNewBuckit }) {
   const [newForm, setNewForm] = useState({
-    // name: info.name,
-    // description: info.description,
-    // color: info.color,
-    //   color: info.color
+    name: "",
+    description: "",
+    color: "#CC2936",
   });
+
+  const [stops, setStops] = useState([]);
+
+  const [stop, setStop] = useState(null);
 
   function handleChange(e) {
     setNewForm({
@@ -34,24 +36,20 @@ function NewBuckit({ setPins, pins, apiKey }) {
   }
 
   function handleSave(e) {
-    // e.preventDefault();
-    // // update on backend
-    // fetch("/pins/" + info.id, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(editForm),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // close the form
-    //     setEditInfo(!editInfo);
-    //     // update pins array with updated pins
-    //     let newArr = [...pins];
-    //     newArr[index] = data;
-    //     setPins(newArr);
-    //   });
+    e.preventDefault();
+
+    fetch("/buckits", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newForm),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setBuckits([data, ...buckits]);
+        setNewBuckit(false);
+      });
   }
 
   function handleColorChange(color, e) {
@@ -60,6 +58,15 @@ function NewBuckit({ setPins, pins, apiKey }) {
       color: color.hex,
     });
   }
+
+  // whenever our stop value is set, add it to our stops and clear our stop
+  useEffect(() => {
+    if (stop) {
+      setStops([...stops, stop]);
+      setStop(null);
+    }
+    console.log(stops);
+  }, [stop]);
 
   return (
     // <Grid item xs={12} sm={10} md={4}>
@@ -103,8 +110,15 @@ function NewBuckit({ setPins, pins, apiKey }) {
                 Stops
               </Typography>
               <List>
-                {/* map buckit pins here */}
-                <BuckitPin />
+                {stops.map((pin, index) => (
+                  <BuckitPin
+                    key={index}
+                    order={index}
+                    pin={pin}
+                    stops={stops}
+                    setStops={setStops}
+                  />
+                ))}
               </List>
             </Grid>
 
@@ -112,7 +126,10 @@ function NewBuckit({ setPins, pins, apiKey }) {
               <Typography variant="body1" color="rgba(0, 0, 0, 0.6)">
                 Add stops
               </Typography>
-              <GooglePlacesAutocomplete apiKey="AIzaSyC2zK2fEpFe4_0y8fh_XTIyqOA0BNj0utE" />
+              <GooglePlacesAutocomplete
+                apiKey="AIzaSyC2zK2fEpFe4_0y8fh_XTIyqOA0BNj0utE"
+                selectProps={{ value: stop, onChange: setStop }}
+              />
             </Grid>
             <Grid item xs={12} sx={{ marginTop: "15px" }}>
               <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
@@ -161,7 +178,7 @@ function NewBuckit({ setPins, pins, apiKey }) {
                 disableElevation
                 sx={{ my: "10px" }}
               >
-                Save
+                Create
               </Button>
             </Grid>
           </Grid>

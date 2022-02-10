@@ -5,11 +5,11 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import IconButton from "@mui/material/IconButton";
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-function BuckitPin() {
+function BuckitPin({ order, pin, stops, setStops }) {
   // TODO: Add condition if first or last child to not show up/down button
   return (
     <ListItem>
-      <ListItemText primary="test" />
+      <ListItemText primary={pin.place_name || pin.label} />
       <IconButton>
         <KeyboardArrowDownIcon />
       </IconButton>
