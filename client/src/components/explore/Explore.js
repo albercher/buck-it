@@ -10,9 +10,9 @@ function Explore({ publicPins, publicActivities }) {
     <Box sx={{ marginTop: "75px", px: "15px" }}>
       <Typography gutterBottom variant="h4">Recent Buckits</Typography>
       <Grid container spacing={1} justifyContent={"center"} sx={{ paddingBottom: "30px"}}>
-        {publicPins.map((info, index) => (
+        {/* {publicPins.map((info, index) => (
           <RecentPin key={index} info={info} />
-        ))}
+        ))} */}
       </Grid>
       <Typography gutterBottom variant="h4">Recent Activities</Typography>
       <Grid container spacing={1} justifyContent={"center"}>

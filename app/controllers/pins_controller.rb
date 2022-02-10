@@ -1,15 +1,10 @@
 class PinsController < ApplicationController
-  def index
-    render json: Pin.order("updated_at DESC").limit(9)
-  end
+  # def index
+  #   render json: Pin.order("updated_at DESC").limit(9)
+  # end
 
   def create
-    pin = Pin.create(
-        longitude: params[:longitude],
-        latitude: params[:latitude],
-        user_id: params[:user_id],
-        place_name: params[:place_name]
-      )
+    pin = Pin.create(pin_params)
     if pin.valid?
         render json: pin, status: :created
     else
@@ -17,19 +12,19 @@ class PinsController < ApplicationController
     end
   end
 
-  def update
-    pin = Pin.find_by_id(params[:id])
+  # def update
+  #   pin = Pin.find_by_id(params[:id])
 
-    if pin
-      if pin.update(pin_params)
-        render json: pin, status: :ok
-      else
-        render json: {error: pin.errors.full_messages}
-      end
-    else
-      render json: {error: "Pin not found"}, status: :not_found
-    end
-  end
+  #   if pin
+  #     if pin.update(pin_params)
+  #       render json: pin, status: :ok
+  #     else
+  #       render json: {error: pin.errors.full_messages}
+  #     end
+  #   else
+  #     render json: {error: "Pin not found"}, status: :not_found
+  #   end
+  # end
 
   def destroy
     pin = Pin.find_by_id(params[:id])
@@ -45,6 +40,6 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.permit(:name, :description, :color, :visited)
+    params.permit(:place_name, :longitude, :latitude, :order_number, :place_id, :buckit_id)
   end
 end

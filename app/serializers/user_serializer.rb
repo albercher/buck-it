@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :initials, :display_name
-  has_many :pins
+  has_many :buckits
   has_many :activities do
     object.activities.order(created_at: :desc)
   end

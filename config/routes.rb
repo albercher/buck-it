@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :buckits, only: [:index, :create, :update, :destroy, :show]
   resources :activities, only: [:create, :update, :destroy, :index]
-  resources :pins, only: [:create, :update, :destroy, :index]
+  resources :pins, only: [:create, :destroy, :index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
