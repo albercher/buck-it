@@ -94,7 +94,7 @@ function Activity({ activity, activities, setActivities, index }) {
 
   return (
     <Grid item xs={12} sm={10} md={6} >
-      <Card variant="outlined" sx={{ borderRadius: "0dp", height: "100%" }}>
+      <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
         <CardHeader
           avatar={
             <Checkbox
