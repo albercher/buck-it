@@ -109,9 +109,11 @@ function Navigation({ window, currentUser, setCurrentUser }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Buck-It
-          </Typography>
+          <Box component="div" noWrap>
+            <Typography variant="h6">
+              Buck-It, <i>let's go</i>
+            </Typography>
+          </Box>
           {currentUser ? (
             <UserMenu
               currentUser={currentUser}
