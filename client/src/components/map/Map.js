@@ -68,7 +68,7 @@ function Map({ pins, setPins, currentUser }) {
     <MapGL
       {...viewport}
       ref={mapRef}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapStyle="mapbox://styles/mapbox/light-v10"
       width="100%"
       height="100vh"
       onViewportChange={handleViewportChange}
