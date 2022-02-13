@@ -89,7 +89,7 @@ function Buckit({ info, setPins, pins, index }) {
               <IconButton size="small" aria-label="edit" onClick={handleEdit} className="wiggle">
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
-              <IconButton size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
+              <IconButton sx={{ "&:hover": { color: "#d21404" } }} size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>
