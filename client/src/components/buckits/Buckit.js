@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import Divider from "@mui/material/Divider";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
@@ -111,8 +112,10 @@ function Buckit({ info, setPins, pins, index }) {
               </Typography>
             </Grid>
           }
-          sx={{ paddingBottom: "5px" }}
+          sx={{ paddingBottom: "15px" }}
         />
+                <Divider variant="middle" />
+
         <CardContent
           sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
         >
@@ -207,11 +210,11 @@ function Buckit({ info, setPins, pins, index }) {
             // Card
             <Grid container>
               {info.description ? (
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ paddingTop: "5px" }}>
                   <Typography gutterBottom>{info.description}</Typography>
                 </Grid>
               ) : null}
-              <Grid item xs={6}>
+              <Grid item xs={6} sx={{ paddingTop: "10px" }}>
                 <Typography variant="body2" color="#6d6d6d">
                   {info.place_name}
                 </Typography>
