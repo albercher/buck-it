@@ -62,5 +62,29 @@
   100% {transform: rotate(0deg);}
 }
 
+.waviy {
+  position: relative;
+  /* -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2)); */
+  font-size: 60px;
+}
+.waviy span {
+  /* font-family: 'Alfa Slab One', cursive; */
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  /* text-transform: uppercase; */
+  animation: waviy 5s infinite;
+  animation-delay: calc(.1s * var(--i));
+  white-space: pre;
+}
+@keyframes waviy {
+  0%, 10%, 40%,100% {
+    transform: translateY(0)
+  }
+  5% {
+    transform: translateY(-5px)
+  }
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');

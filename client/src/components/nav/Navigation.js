@@ -14,10 +14,10 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
 import LocalActivityOutlinedIcon from "@mui/icons-material/LocalActivityOutlined";
-import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
-import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
-import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
+import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
+import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+import LibraryAddCheckOutlinedIcon from "@mui/icons-material/LibraryAddCheckOutlined";
 
 import SidebarItem from "./SidebarItem";
 import UserMenu from "./UserMenu";
@@ -39,7 +39,7 @@ const navList = [
   {
     title: "Activities",
     icon: <LibraryAddCheckOutlinedIcon />,
-    link: "/myactivities"
+    link: "/myactivities",
     // items: [
     //   {
     //     title: "Incomplete",
@@ -75,10 +75,7 @@ function Navigation({ window, currentUser, setCurrentUser }) {
       <Divider />
       <List>
         {navList.map((item, key) => (
-          <SidebarItem
-            key={key}
-            item={item}
-          />
+          <SidebarItem key={key} item={item} />
         ))}
       </List>
     </div>
@@ -110,8 +107,17 @@ function Navigation({ window, currentUser, setCurrentUser }) {
             <MenuIcon />
           </IconButton>
           <Box component="div" noWrap>
-            <Typography variant="h6">
-              Buck-It, <i>let's go</i>
+            <Typography variant="h6" className="waviy">
+              Buck-It,
+              <span> </span>
+              <span style={{"--i":1}}>l</span>
+              <span className="--i:2" style={{"--i":2}}>e</span>
+              <span className="--i:3" style={{"--i":3}}>t</span>
+              <span className="--i:4" style={{"--i":4}}>'</span>
+              <span className="--i:5" style={{"--i":5}}>s</span>
+              <span> </span>
+              <span className="--i:7" style={{"--i":6}}>g</span>
+              <span className="--i:8" style={{"--i":7}}>o</span>
             </Typography>
           </Box>
           {currentUser ? (
