@@ -4,8 +4,21 @@ import Grid from "@mui/material/Grid";
 
 import RecentPin from "./RecentPin";
 import RecentActivity from "./RecentActivity";
+import { useEffect } from "react";
 
-function Explore({ publicPins, publicActivities }) {
+function Explore({ publicPins, publicActivities, setPublicActivities, setPublicPins }) {
+  useEffect(() => {
+    fetch("/pins")
+      .then((response) => response.json())
+      .then((data) => setPublicPins(data));
+  }, []);
+
+  useEffect(() => {
+    fetch("/activities")
+      .then((response) => response.json())
+      .then((data) => setPublicActivities(data));
+  }, []);
+
   return (
     <Box sx={{ marginTop: "75px", px: "15px" }}>
       <Typography gutterBottom variant="h4">Recent Buckits</Typography>

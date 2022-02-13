@@ -134,6 +134,8 @@ function App() {
                 <Explore
                   publicPins={publicPins}
                   publicActivities={publicActivities}
+                  setPublicActivities={setPublicActivities}
+                  setPublicPins={setPublicPins}
                 />
               }
             />
