@@ -86,10 +86,10 @@ function Buckit({ info, setPins, pins, index }) {
         <CardHeader
           action={
             <Box>
-              <IconButton size="small" aria-label="edit" onClick={handleEdit}>
+              <IconButton size="small" aria-label="edit" onClick={handleEdit} className="wiggle">
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
-              <IconButton size="small" aria-label="edit" onClick={handleDelete}>
+              <IconButton size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>

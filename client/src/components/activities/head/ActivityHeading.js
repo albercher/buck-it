@@ -21,13 +21,13 @@ function ActivityHeading({
       <SortActivities activities={activities} setActivities={setActivities} />
       {newActivity ? (
         <Zoom in={newActivity}>
-          <IconButton onClick={handleClick} aria-label="add">
+          <IconButton onClick={handleClick} aria-label="add" className="wiggle">
             <RemoveIcon />
           </IconButton>
         </Zoom>
       ) : null}
       {newActivity ? null : (        <Zoom in={!newActivity}>
-        <IconButton onClick={handleClick} aria-label="add">
+        <IconButton onClick={handleClick} aria-label="add" className="wiggle">
           <AddIcon />
         </IconButton>
       </Zoom>)}

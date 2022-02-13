@@ -106,10 +106,10 @@ function Activity({ activity, activities, setActivities, index }) {
           title={<Typography variant="h6">{activity.name}</Typography>}
           action={
             <Box>
-              <IconButton size="small" aria-label="edit" onClick={handleEdit}>
+              <IconButton size="small" aria-label="edit" onClick={handleEdit} className="wiggle">
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
-              <IconButton size="small" aria-label="edit" onClick={handleDelete}>
+              <IconButton size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>
