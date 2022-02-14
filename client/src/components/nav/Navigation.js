@@ -31,7 +31,7 @@ const drawerWidth = 175;
 const navList = [
   { title: "Explore", icon: <ExploreOutlinedIcon />, link: "/", items: [] },
   {
-    title: "Buck-Its",
+    title: "Buckits",
     icon: <RoomOutlinedIcon />,
     link: "/mybuckits",
     items: [],
