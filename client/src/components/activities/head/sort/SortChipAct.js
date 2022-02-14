@@ -1,6 +1,6 @@
 import Chip from "@mui/material/Chip";
 
-function SortChip( { name, handleSort } ) {
+function SortChip({ name, handleSort }) {
   return (
     <Chip
       label={name}
@@ -12,7 +12,6 @@ function SortChip( { name, handleSort } ) {
           backgroundColor: "secondary.light",
         },
       }}
-      // className="wiggle"
     />
   );
 }

@@ -9,7 +9,6 @@ function RecentPin({ info }) {
   return (
     <Grid item xs={12} sm={10} md={4}>
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
-        {/* height 100% for card */}
         <CardHeader
           title={
             <Grid container>
@@ -71,11 +70,6 @@ function RecentPin({ info }) {
                 {info.latitude}, {info.longitude}
               </Typography>
             </Grid>
-            {/* <Grid item xs={12} align="right">
-              <Typography variant="caption" color="#6d6d6d">
-                Updated {info.time_ago}
-              </Typography>
-            </Grid> */}
           </Grid>
         </CardContent>
       </Card>

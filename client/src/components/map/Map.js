@@ -1,4 +1,3 @@
-import { useState, useCallback, useRef } from "react";
 import MapGL, {
   Popup,
   NavigationControl,
@@ -8,6 +7,8 @@ import Geocoder from "react-map-gl-geocoder";
 
 import Pin from "./Pin";
 import PinInfo from "./PinInfo";
+
+import { useState, useCallback, useRef } from "react";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_API_KEY;
 

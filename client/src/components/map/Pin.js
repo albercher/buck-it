@@ -28,7 +28,6 @@ function Pin({ data, onClick }) {
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
         }}
         onClick={() => onClick(city)}
-        
       >
         <path d={ICON} />
       </svg>

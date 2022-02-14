@@ -1,4 +1,4 @@
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function CheckAuth({ children, setCurrentUser, setPins, setActivities }) {

@@ -4,9 +4,15 @@ import Grid from "@mui/material/Grid";
 
 import RecentPin from "./RecentPin";
 import RecentActivity from "./RecentActivity";
+
 import { useEffect } from "react";
 
-function Explore({ publicPins, publicActivities, setPublicActivities, setPublicPins }) {
+function Explore({
+  publicPins,
+  publicActivities,
+  setPublicActivities,
+  setPublicPins,
+}) {
   useEffect(() => {
     fetch("/pins")
       .then((response) => response.json())
@@ -21,13 +27,22 @@ function Explore({ publicPins, publicActivities, setPublicActivities, setPublicP
 
   return (
     <Box sx={{ marginTop: "75px", px: "15px" }}>
-      <Typography gutterBottom variant="h4">Recent Buckits</Typography>
-      <Grid container spacing={1} justifyContent={"center"} sx={{ paddingBottom: "30px"}}>
+      <Typography gutterBottom variant="h4">
+        Recent Buckits
+      </Typography>
+      <Grid
+        container
+        spacing={1}
+        justifyContent={"center"}
+        sx={{ paddingBottom: "30px" }}
+      >
         {publicPins.map((info, index) => (
           <RecentPin key={index} info={info} />
         ))}
       </Grid>
-      <Typography gutterBottom variant="h4">Recent Activities</Typography>
+      <Typography gutterBottom variant="h4">
+        Recent Activities
+      </Typography>
       <Grid container spacing={1} justifyContent={"center"}>
         {publicActivities.map((info, index) => (
           <RecentActivity key={index} info={info} />

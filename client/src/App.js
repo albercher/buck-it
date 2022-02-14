@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/nav/Navigation";
@@ -8,7 +9,6 @@ import Map from "./components/map/Map";
 import MyBuckits from "./components/buckits/MyBuckits";
 import MyActivities from "./components/activities/MyActivities";
 import Explore from "./components/explore/Explore";
-
 import RequireAuth from "./components/utils/RequireAuth";
 import CheckAuth from "./components/utils/CheckAuth";
 
@@ -19,7 +19,6 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 // Mapbox css
 import "mapbox-gl/dist/mapbox-gl.css";
-// ? might be able to get rid of styled components
 
 const theme = createTheme({
   palette: {
@@ -49,11 +48,6 @@ const theme = createTheme({
         color: "secondary",
       },
     },
-    // MuiChip: {
-    //   defaultProps: {
-    //     sx
-    //   }
-    // }
   },
 });
 
@@ -63,18 +57,6 @@ function App() {
   const [activities, setActivities] = useState([]);
   const [publicPins, setPublicPins] = useState([]);
   const [publicActivities, setPublicActivities] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/me").then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => {
-  //         setCurrentUser(user.id);
-  //         setPins(user.pins);
-  //         setActivities(user.activities);
-  //       });
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     fetch("/pins")

@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Collapse from "@mui/material/Collapse";
+
 import Activity from "./Activity";
 import ActivityHeading from "./head/ActivityHeading";
 import NewActivity from "./NewActivity";
@@ -18,7 +19,12 @@ function MyActivities({ activities, setActivities, currentUser }) {
         newActivity={newActivity}
         setNewActivity={setNewActivity}
       />
-      <Grid container spacing={1} justifyContent={"center"} sx={{ px: "15px", paddingBottom: "8px" }}>
+      <Grid
+        container
+        spacing={1}
+        justifyContent={"center"}
+        sx={{ px: "15px", paddingBottom: "8px" }}
+      >
         <Grid item xs={12} sm={10} md={6}>
           <Collapse in={newActivity}>
             <NewActivity
@@ -29,8 +35,8 @@ function MyActivities({ activities, setActivities, currentUser }) {
             />
           </Collapse>
         </Grid>
-        </Grid>
-        <Grid container spacing={1} justifyContent={"center"} sx={{ px: "15px" }}>
+      </Grid>
+      <Grid container spacing={1} justifyContent={"center"} sx={{ px: "15px" }}>
         {activities.map((activity, index) => (
           <Activity
             key={index}

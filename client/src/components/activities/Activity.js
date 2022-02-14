@@ -15,8 +15,6 @@ import Collapse from "@mui/material/Collapse";
 import { useState } from "react";
 
 function Activity({ activity, activities, setActivities, index }) {
-  const [checked, setChecked] = useState(activity.completed);
-
   const [editInfo, setEditInfo] = useState(false); // determines which version of card to show (form or no form)
   const [editForm, setEditForm] = useState({
     name: activity.name,
@@ -71,8 +69,6 @@ function Activity({ activity, activities, setActivities, index }) {
   }
 
   function handleCheck(e) {
-    setChecked(e.target.checked);
-
     const currentCheck = { completed: e.target.checked };
     // update on backend
     fetch("/activities/" + activity.id, {
@@ -130,52 +126,6 @@ function Activity({ activity, activities, setActivities, index }) {
         <CardContent
           sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
         >
-          {/* {editInfo ? (
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-              onSubmit={handleSave}
-            >
-              <Grid container>
-                <Grid item xs={12}>
-                  <TextField
-                    name="name"
-                    id="standard-basic"
-                    fullWidth
-                    label="Name"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={editForm.name || ""}
-                  />
-                </Grid>
-                <Grid item xs={12} sx={{ marginTop: "15px" }}>
-                  <TextField
-                    name="description"
-                    id="standard-basic"
-                    label="Description"
-                    variant="standard"
-                    fullWidth
-                    onChange={handleChange}
-                    value={editForm.description || ""}
-                    multiline
-                  />
-                </Grid>
-                <Grid item xs={12} sx={{ marginTop: "10px" }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disableElevation
-                    sx={{ my: "10px" }}
-                  >
-                    Save
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
-          ) : (
-            <Typography>{activity.description}</Typography>
-          )} */}
           <Collapse in={editInfo}>
             <Box
               component="form"

@@ -6,20 +6,23 @@ import SortChip from "./SortChipAct";
 function SortActivities({ activities, setActivities }) {
   const sortMethods = ["Name", "Completed"];
 
-  function handleSort(e){
+  function handleSort(e) {
     let sorted = [];
-    if(e === "Name"){
-      sorted = activities.sort((a,b) => {
-        if(a.name.toLowerCase() < b.name.toLowerCase()) { return -1; }
-        if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1; }
+    if (e === "Name") {
+      sorted = activities.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
         return 0;
-      })
-      
-    } else if(e === "Completed"){
-      sorted = activities.sort((a,b) => a.completed - b.completed);
+      });
+    } else if (e === "Completed") {
+      sorted = activities.sort((a, b) => a.completed - b.completed);
     }
     setActivities([...sorted]);
-  };
+  }
 
   return (
     <Toolbar sx={{ margin: "auto", justifyContent: "center" }}>
