@@ -78,6 +78,7 @@ function Map({ pins, setPins, currentUser }) {
         mapRef={mapRef}
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
+        placeholder="Create a new buckit"
         position="bottom-right"
         onResult={(result) => {
           handleAddPin(result.result);
