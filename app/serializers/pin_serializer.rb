@@ -1,5 +1,5 @@
 class PinSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :color, :place_name, :longitude, :latitude, :visited, :time_ago
+  attributes :id, :name, :description, :color, :place_name, :longitude, :latitude, :visited, :time_ago, :updated_at
   has_one :user
 
 end

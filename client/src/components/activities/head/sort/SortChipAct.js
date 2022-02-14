@@ -12,7 +12,7 @@ function SortChip( { name, handleSort } ) {
           backgroundColor: "secondary.light",
         },
       }}
-      className="wiggle"
+      // className="wiggle"
     />
   );
 }
