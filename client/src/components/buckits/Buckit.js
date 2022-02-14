@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Divider from "@mui/material/Divider";
+import Collapse from "@mui/material/Collapse";
 
 // import { HuePicker } from 'react-color'
 import { TwitterPicker } from "react-color";
@@ -75,7 +76,7 @@ function Buckit({ info, setPins, pins, index }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        let filteredArray = pins.filter(pin => pin.id !== info.id);
+        let filteredArray = pins.filter((pin) => pin.id !== info.id);
         setPins(filteredArray);
       });
   }
@@ -87,10 +88,21 @@ function Buckit({ info, setPins, pins, index }) {
         <CardHeader
           action={
             <Box>
-              <IconButton size="small" aria-label="edit" onClick={handleEdit} className="wiggle">
+              <IconButton
+                size="small"
+                aria-label="edit"
+                onClick={handleEdit}
+                className="wiggle"
+              >
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
-              <IconButton sx={{ "&:hover": { color: "#d21404" } }} size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
+              <IconButton
+                sx={{ "&:hover": { color: "#d21404" } }}
+                size="small"
+                aria-label="edit"
+                onClick={handleDelete}
+                className="wiggle"
+              >
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>
@@ -114,12 +126,12 @@ function Buckit({ info, setPins, pins, index }) {
           }
           sx={{ paddingBottom: "15px" }}
         />
-                <Divider variant="middle" />
+        <Divider variant="middle" />
 
         <CardContent
           sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
         >
-          {editInfo ? (
+          {/* {editInfo ? (
             // Card Edit
             <Box
               component="form"
@@ -225,7 +237,122 @@ function Buckit({ info, setPins, pins, index }) {
                 </Typography>
               </Grid>
             </Grid>
-          )}
+          )} */}
+
+          <Collapse in={editInfo}>
+            <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              onSubmit={handleSave}
+            >
+              <Grid container>
+                <Grid item xs={12}>
+                  <TextField
+                    name="name"
+                    id="standard-basic"
+                    fullWidth
+                    label="Name"
+                    variant="standard"
+                    onChange={handleChange}
+                    value={editForm.name || ""}
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                  <TextField
+                    name="description"
+                    id="standard-basic"
+                    label="Description"
+                    variant="standard"
+                    fullWidth
+                    onChange={handleChange}
+                    value={editForm.description || ""}
+                    multiline
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                  <Typography variant="caption" color="rgba(0, 0, 0, 0.6)">
+                    Pin Color
+                  </Typography>
+                  <TwitterPicker
+                    // width="100%"
+                    colors={[
+                      "#cc2936",
+                      "#f9AA33",
+                      "#ffdc14",
+                      "#0e6325",
+                      "#1e609e",
+                      "#714b94",
+                      "#c774cf",
+                    ]}
+                    color={editForm.color}
+                    onChange={handleColorChange}
+                    triangle="hide"
+                    styles={{
+                      default: {
+                        card: {
+                          boxShadow: "none",
+                        },
+                        body: {
+                          padding: "4px 0px 0px 0px",
+                        },
+                        // input: {
+                        //   width: "20%"
+                        // },
+                        // hash: {
+                        //   width: "10%"
+                        // },
+                        // swatch: {
+                        //   width: "10%"
+                        // },
+                      },
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sx={{ marginTop: "10px" }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disableElevation
+                    sx={{ my: "10px" }}
+                  >
+                    Save
+                  </Button>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <Typography variant="body2" color="#6d6d6d">
+                    {info.place_name}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} align="right">
+                  <Typography variant="overline" color="#6d6d6d">
+                    {info.latitude}, {info.longitude}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
+          <Collapse in={!editInfo}>
+            <Grid container>
+              {info.description ? (
+                <Grid item xs={12} sx={{ paddingTop: "5px" }}>
+                  <Typography gutterBottom>{info.description}</Typography>
+                </Grid>
+              ) : null}
+              <Grid item xs={6} sx={{ paddingTop: "10px" }}>
+                <Typography variant="body2" color="#6d6d6d">
+                  {info.place_name}
+                </Typography>
+              </Grid>
+              <Grid item xs={6} align="right">
+                <Typography variant="overline" color="#6d6d6d">
+                  {info.latitude}, {info.longitude}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Collapse>
         </CardContent>
       </Card>
     </Grid>

@@ -93,7 +93,7 @@ function Activity({ activity, activities, setActivities, index }) {
   }
 
   return (
-    <Grid item xs={12} sm={10} md={6} >
+    <Grid item xs={12} sm={10} md={6}>
       <Card variant="outlined" sx={{ borderRadius: "0dp" }}>
         <CardHeader
           avatar={
@@ -106,10 +106,21 @@ function Activity({ activity, activities, setActivities, index }) {
           title={<Typography variant="h6">{activity.name}</Typography>}
           action={
             <Box>
-              <IconButton size="small" aria-label="edit" onClick={handleEdit} className="wiggle">
+              <IconButton
+                size="small"
+                aria-label="edit"
+                onClick={handleEdit}
+                className="wiggle"
+              >
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
-              <IconButton sx={{ "&:hover": { color: "#d21404" } }} size="small" aria-label="edit" onClick={handleDelete} className="wiggle">
+              <IconButton
+                sx={{ "&:hover": { color: "#d21404" } }}
+                size="small"
+                aria-label="edit"
+                onClick={handleDelete}
+                className="wiggle"
+              >
                 <DeleteOutlinedIcon />
               </IconButton>
             </Box>
@@ -119,7 +130,7 @@ function Activity({ activity, activities, setActivities, index }) {
         <CardContent
           sx={{ paddingTop: "5px", "&:last-child": { paddingBottom: "16px" } }}
         >
-          {editInfo ? (
+          {/* {editInfo ? (
             <Box
               component="form"
               noValidate
@@ -164,7 +175,54 @@ function Activity({ activity, activities, setActivities, index }) {
             </Box>
           ) : (
             <Typography>{activity.description}</Typography>
-          )}
+          )} */}
+          <Collapse in={editInfo}>
+            <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              onSubmit={handleSave}
+            >
+              <Grid container>
+                <Grid item xs={12}>
+                  <TextField
+                    name="name"
+                    id="standard-basic"
+                    fullWidth
+                    label="Name"
+                    variant="standard"
+                    onChange={handleChange}
+                    value={editForm.name || ""}
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "15px" }}>
+                  <TextField
+                    name="description"
+                    id="standard-basic"
+                    label="Description"
+                    variant="standard"
+                    fullWidth
+                    onChange={handleChange}
+                    value={editForm.description || ""}
+                    multiline
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "10px" }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disableElevation
+                    sx={{ my: "10px" }}
+                  >
+                    Save
+                  </Button>
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
+          <Collapse in={!editInfo}>
+            <Typography>{activity.description}</Typography>
+          </Collapse>
         </CardContent>
       </Card>
     </Grid>
