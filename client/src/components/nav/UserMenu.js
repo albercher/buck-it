@@ -37,7 +37,7 @@ function UserMenu({ currentUser, setCurrentUser }) {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar>{currentUser.initials}</Avatar>
+          <Avatar />
         </IconButton>
       </Tooltip>
       <Menu
